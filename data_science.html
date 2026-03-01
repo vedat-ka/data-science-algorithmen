@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Science Dokumentation&nbsp;&mdash; Alle Algorithmen</title>
+<link rel="stylesheet" href="styles.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="logo">&#9881; DS Docs</span>
+    <nav class="navbar">
+      <a href="#guide" data-tab="guide">Entscheidungshilfe</a>
+      <a href="#decision-tree" data-tab="decision-tree">Decision Tree</a>
+      <a href="#cnn" data-tab="cnn">CNN</a>
+      <a href="#neural-net" data-tab="neural-net">Neural Networks</a>
+      <a href="#transformer" data-tab="transformer">Transformer</a>
+      <a href="#onnx" data-tab="onnx">ONNX</a>
+      <a href="#svm" data-tab="svm">SVM</a>
+      <a href="#naive-bayes" data-tab="naive-bayes">Naive Bayes</a>
+      <a href="#logistic-reg" data-tab="logistic-reg">Log. Regression</a>
+      <a href="#comparison" data-tab="comparison">Vergleich</a>
+      <a href="#projects" data-tab="projects">Projekte</a>
+      <a href="#glossar" data-tab="glossar">&#128218; Glossar</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Data Science Algorithmen</h1>
+    <p>Wissenschaftliche Dokumentation zu Machine Learning Algorithmen mit Code, Mathematik und Projekten</p>
+    <div class="hero-tags">
+      <span class="tag blue">Decision Tree</span>
+      <span class="tag green">CNN</span>
+      <span class="tag orange">Neural Networks</span>
+      <span class="tag purple">Transformer</span>
+      <span class="tag red">ONNX</span>
+      <span class="tag teal">SVM</span>
+      <span class="tag cyan">Naive Bayes</span>
+      <span class="tag indigo">Log. Regression</span>
+    </div>
+  </section>
+
+  <!-- ENTSCHEIDUNGSHILFE -->
+  <section id="guide" class="card tab-panel">
+    <h2>&#127919; Welcher Algorithmus für dein Problem?</h2>
+    <p>Wähle den richtigen Algorithmus anhand dieser Kriterien:</p>
+    <div class="decision-grid">
+      <div class="decision-card border-blue">
+        <h3>Decision Tree</h3>
+        <ul>
+          <li>&#10003; Tabellarische Daten (CSV)</li>
+          <li>&#10003; Erklärbarkeit wichtig</li>
+          <li>&#10003; Kleine bis mittelgroße Datensätze</li>
+          <li>&#10003; Keine GPU benötigt</li>
+          <li>&#10007; Bilderkennung</li>
+          <li>&#10007; Sequenzdaten</li>
+        </ul>
+        <span class="badge blue">scikit-learn</span>
+      </div>
+      <div class="decision-card border-green">
+        <h3>CNN</h3>
+        <ul>
+          <li>&#10003; Bilder &amp; Videos</li>
+          <li>&#10003; Objekterkennung</li>
+          <li>&#10003; Räumliche Muster</li>
+          <li>&#10003; GPU vorhanden</li>
+          <li>&#10007; Kleine Datasets ohne Augmentation</li>
+          <li>&#10007; Textdaten nativ</li>
+        </ul>
+        <span class="badge green">PyTorch / TensorFlow</span>
+      </div>
+      <div class="decision-card border-orange">
+        <h3>Neural Network (MLP)</h3>
+        <ul>
+          <li>&#10003; Allgemeine Klassifikation</li>
+          <li>&#10003; Regression</li>
+          <li>&#10003; Nicht-lineare Muster</li>
+          <li>&#10003; Tabellarisch + strukturiert</li>
+          <li>&#10007; Bilder (besser CNN)</li>
+          <li>&#10007; Sequenzen (besser Transformer)</li>
+        </ul>
+        <span class="badge orange">PyTorch</span>
+      </div>
+      <div class="decision-card border-purple">
+        <h3>Transformer</h3>
+        <ul>
+          <li>&#10003; Text, NLP, übersetzung</li>
+          <li>&#10003; Lange Sequenzen</li>
+          <li>&#10003; Abhängigkeiten über Distanz</li>
+          <li>&#10003; Große Datenmengen</li>
+          <li>&#10007; Sehr kleine Datasets</li>
+          <li>&#10007; Kein GPU-Zugang</li>
+        </ul>
+        <span class="badge purple">PyTorch / HuggingFace</span>
+      </div>
+      <div class="decision-card border-teal">
+        <h3>SVM</h3>
+        <ul>
+          <li>&#10003; Tabellarische Daten</li>
+          <li>&#10003; Hochdimensionale Räume</li>
+          <li>&#10003; Kleine bis mittelgroße Datasets</li>
+          <li>&#10003; Nicht-lineare Muster (Kernel)</li>
+          <li>&#10007; Große Datensätze (langsam)</li>
+          <li>&#10007; Überlappende Klassen</li>
+        </ul>
+        <span class="badge teal">scikit-learn</span>
+      </div>
+      <div class="decision-card border-cyan">
+        <h3>Naive Bayes</h3>
+        <ul>
+          <li>&#10003; Textklassifikation / Spam</li>
+          <li>&#10003; Sehr schnell, wenig Daten</li>
+          <li>&#10003; Mehrklassenprobleme</li>
+          <li>&#10003; Kein GPU ben&#246;tigt</li>
+          <li>&#10007; Feature-Abh&#228;ngigkeiten</li>
+          <li>&#10007; Stetige Merkmals-Korrelationen</li>
+        </ul>
+        <span class="badge cyan">scikit-learn</span>
+      </div>
+      <div class="decision-card border-indigo">
+        <h3>Logistische Regression</h3>
+        <ul>
+          <li>&#10003; Bin&#228;re Klassifikation</li>
+          <li>&#10003; Interpretierbar (Koeffizienten)</li>
+          <li>&#10003; Tabellarische Daten</li>
+          <li>&#10003; Baseline-Modell</li>
+          <li>&#10007; Nicht-lineare Grenzen</li>
+          <li>&#10007; Sehr viele Kategorie-Features</li>
+        </ul>
+        <span class="badge indigo">scikit-learn</span>
+      </div>
+      <div class="decision-card border-red">
+        <h3>ONNX</h3>
+        <ul>
+          <li>&#10003; Modell deployen</li>
+          <li>&#10003; Framework-Wechsel</li>
+          <li>&#10003; Edge / Mobile</li>
+          <li>&#10003; Produktionssystem</li>
+          <li>&#10007; Training (nur Inferenz)</li>
+          <li>&#10007; Custom Ops komplex</li>
+        </ul>
+        <span class="badge red">Framework-agnostisch</span>
+      </div>
+    </div>
+
+    <!-- ML OVERVIEW -->
+    <div class="ml-overview">
+
+      <h2 style="margin-bottom:1.25rem">&#129504; Machine Learning &mdash; Konzepte, Methoden &amp; Tools</h2>
+      <p style="color:var(--text-muted);margin-bottom:2rem">Ein strukturierter &Uuml;berblick: Was steckt hinter Machine Learning, welche Lernverfahren gibt es, was sind typische Anwendungen und welche Tools werden eingesetzt?</p>
+
+      <!-- Was ist ML -->
+      <div class="ml-ov-block">
+        <div class="ml-ov-icon blue-bg">&#129302;</div>
+        <div>
+          <h3>Was ist Machine Learning?</h3>
+          <p>Machine Learning ist ein <strong>Teilgebiet der K&uuml;nstlichen Intelligenz</strong>, das es Systemen erm&ouml;glicht, auf Basis von Trainingsdaten <em>automatisch zu lernen</em> und sich zu verbessern &ndash; ohne explizit programmiert zu werden.</p>
+          <blockquote class="ml-quote">&#8222;Eine Maschine lernt aus der Erfahrung E hinsichtlich einer Klasse von Aufgaben T und dem Performance-Ma&szlig; P, falls die Performance P hinsichtlich T mit E sich verbessert.&#8220; &mdash; Tom Mitchell, 1997</blockquote>
+          <p>Verwandte Disziplinen: <strong>Pattern Recognition</strong> (Mustererkennung in Sprache &amp; Bildern), <strong>Data Mining</strong> (Querverbindungen in Big Data), <strong>Deep Learning</strong> (neuronale Netze mit hunderten Schichten).</p>
+        </div>
+      </div>
+
+      <!-- Lernparadigmen -->
+      <h3 style="margin:1.75rem 0 1rem">&#127891; Lernverfahren im &Uuml;berblick</h3>
+      <figure class="ml-figure">
+        <img src="maschinelles_lernen.svg" alt="Methoden des Maschinellen Lernens &ndash; &Uuml;bersicht" loading="lazy">
+        <figcaption>Methoden des Maschinellen Lernens &ndash; gruppiert nach Lernverfahren (Quelle: elab2go.de)</figcaption>
+      </figure>
+      <div class="ml-paradigm-grid">
+        <div class="ml-paradigm-card border-blue">
+          <div class="ml-p-header blue-bg">&#128269; &Uuml;berwachtes Lernen</div>
+          <div class="ml-p-body">
+            <p><strong>Supervised Learning</strong> &ndash; Jeder Datensatz hat eine bekannte Bewertung / Klasse. Das Modell lernt eine Abbildung von Eingabe auf Ausgabe.</p>
+            <p><strong>Ablauf:</strong> Trainingsdaten aufteilen &rarr; Modell trainieren &rarr; mit Testdaten validieren &rarr; Hyperparameter optimieren</p>
+            <p><strong>Aufgaben:</strong></p>
+            <ul>
+              <li><strong>Klassifikation</strong> &ndash; Kategorie vorhersagen (Spam/kein Spam, Ausfall ja/nein)</li>
+              <li><strong>Regression</strong> &ndash; Numerischen Wert vorhersagen (Stromverbrauch, Preis)</li>
+            </ul>
+            <p><strong>Typische Algorithmen:</strong> Decision Tree, Random Forest, SVM, Naive Bayes, Logistische Regression, Neuronale Netze</p>
+            <figure class="ml-figure ml-figure--sm">
+              <img src="mini_bsp_tree.PNG" alt="Entscheidungsbaum Beispiel" loading="lazy">
+              <figcaption>Beispiel: Entscheidungsbaum f&uuml;r Ausfall-Klassifikation (temp &amp; druck)</figcaption>
+            </figure>
+            <span class="badge blue">beliebteste Kategorie</span>
+          </div>
+        </div>
+        <div class="ml-paradigm-card border-green">
+          <div class="ml-p-header green-bg">&#128202; Un&uuml;berwachtes Lernen</div>
+          <div class="ml-p-body">
+            <p><strong>Unsupervised Learning</strong> &ndash; Keine Bewertungen vorhanden. Das System erkennt selbstst&auml;ndig Muster und Strukturen in den Daten.</p>
+            <p><strong>Aufgaben:</strong></p>
+            <ul>
+              <li><strong>Clustering</strong> &ndash; Gruppen &auml;hnlicher Beobachtungen finden (K-Means, Hierarchisches Clustering)</li>
+              <li><strong>Dimensionsreduktion</strong> &ndash; Merkmalsraum verkleinern (PCA, t-SNE)</li>
+              <li><strong>Anomalie-Erkennung</strong> &ndash; Abweichungen vom Normverhalten identifizieren</li>
+            </ul>
+            <p><strong>Beispiel:</strong> Raumklima-Sensordaten nach Temperatur &amp; Luftfeuchtigkeit in &#8222;behaglich&#8220;, &#8222;zu trocken&#8220;, &#8222;zu feucht&#8220; clustern</p>
+            <figure class="ml-figure ml-figure--sm">
+              <img src="clusteranalyse.svg" alt="Clusteranalyse Raumklima" loading="lazy">
+              <figcaption>K-Means Clustering: 3 Cluster f&uuml;r Raumklima-Datensatz</figcaption>
+            </figure>
+            <span class="badge green">keine Labels n&ouml;tig</span>
+          </div>
+        </div>
+        <div class="ml-paradigm-card border-purple">
+          <div class="ml-p-header purple-bg">&#127918; Best&auml;rkendes Lernen</div>
+          <div class="ml-p-body">
+            <p><strong>Reinforcement Learning</strong> &ndash; Ein Agent interagiert mit seiner Umgebung und optimiert eine <em>Belohnungsfunktion</em> durch Versuch und Irrtum.</p>
+            <p><strong>Grundlage:</strong> Markovsche Entscheidungsprozesse (MDP) &ndash; Zust&auml;nde S, Aktionen A, &Uuml;bergangswahrscheinlichkeiten, Belohnungen r</p>
+            <ul>
+              <li>Kein beschriftetes Dataset n&ouml;tig</li>
+              <li>Lernt durch Interaktion mit der Umgebung</li>
+              <li>Ziel: optimale Strategie (Policy) finden</li>
+            </ul>
+            <p><strong>Anwendungen:</strong> Roboterbewegung, Prozessautomatisierung, Spielstrategien (AlphaGo), Dialogsysteme</p>
+            <span class="badge purple">Agent &amp; Umgebung</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Anwendungsfelder -->
+      <h3 style="margin:1.75rem 0 1rem">&#127758; Typische Anwendungsfelder</h3>
+      <div class="ml-apps-grid">
+        <div class="ml-app-item">
+          <div class="ml-app-icon">&#128295;</div>
+          <div>
+            <strong>Predictive Maintenance</strong>
+            <p>Sensordaten (Vibration, Temperatur, Druck) mit Klassifikation &amp; Clustering analysieren &rarr; Ausfälle rechtzeitig vorhersagen und Wartungsfenster einplanen</p>
+          </div>
+        </div>
+        <div class="ml-app-item">
+          <div class="ml-app-icon">&#128663;</div>
+          <div>
+            <strong>Assistenzsysteme</strong>
+            <p>Fahrerassistenz, medizinische Diagnose, Chatbots &ndash; Objekterkennung mittels Deep Learning (CNN, R-CNN, YOLO) in Echtzeit</p>
+          </div>
+        </div>
+        <div class="ml-app-item">
+          <div class="ml-app-icon">&#128274;</div>
+          <div>
+            <strong>Sicherheit &amp; &Uuml;berwachung</strong>
+            <p>Endpoint-Protection: Klassifikation neuer Bedrohungen. Anomalie-Erkennung (Clustering) &ndash; auch ohne Vergangenheitsdaten in Echtzeit</p>
+          </div>
+        </div>
+        <div class="ml-app-item">
+          <div class="ml-app-icon">&#128269;</div>
+          <div>
+            <strong>Suchmaschinen</strong>
+            <p>Webcrawler-Klassifikation (relevant/nicht relevant), Deep Learning f&uuml;r Bild-Objekterkennung, Kontextverst&auml;ndnis aus Text &amp; Bild-Metadaten</p>
+          </div>
+        </div>
+        <div class="ml-app-item">
+          <div class="ml-app-icon">&#129489;&#8205;&#128187;</div>
+          <div>
+            <strong>Sprachmodelle (LLMs)</strong>
+            <p>ChatGPT (GPT = Generative Pre-trained Transformer), Llama (Meta) &ndash; Text-Generierung, Code-Erzeugung, &Uuml;bersetzung, Frage-Antwort-Systeme</p>
+          </div>
+        </div>
+        <div class="ml-app-item">
+          <div class="ml-app-icon">&#128233;</div>
+          <div>
+            <strong>Spam-Filterung &amp; NLP</strong>
+            <p>Naive Bayes / SVM klassifiziert E-Mails als Spam / kein Spam. Sentiment Analysis mit LSTM-Netzwerken &ndash; Stimmung aus Texten extrahieren</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deep Learning -->
+      <div class="ml-ov-block" style="margin-top:1.75rem">
+        <div class="ml-ov-icon orange-bg">&#129722;</div>
+        <div>
+          <h3>Deep Learning</h3>
+          <p>Deep Learning ist ein eigenst&auml;ndiges Forschungsgebiet des ML, das <strong>neuronale Netze mit sehr vielen versteckten Schichten</strong> (hunderte) einsetzt. Im Unterschied zum klassischen ML lernt Deep Learning die relevanten <em>Merkmale automatisch aus den Rohdaten</em>.</p>
+          <figure class="ml-figure" style="margin-bottom:1rem">
+            <img src="knn-feedforward.svg" alt="Feedforward Neuronales Netz" loading="lazy">
+            <figcaption>Feedforward-Netz f&uuml;r Ziffernerkennung: 784 Eingabe-Pixel &rarr; versteckte Schichten &rarr; 10 Ausgabeklassen (0&ndash;9)</figcaption>
+          </figure>
+          <div class="ml-dl-grid">
+            <div>
+              <h4>&#128444; Convolutional Neural Networks (CNN)</h4>
+              <p>F&uuml;r Bilder &amp; Videos: Feature-Extraktion durch Faltungs-Schichten + Klassifikation. Frameworks: YOLO (Echtzeit-Objekterkennung), R-CNN (zweistufig: lokalisieren &rarr; klassifizieren), SSD</p>
+              <figure class="ml-figure ml-figure--sm" style="margin-top:0.6rem">
+                <img src="convnet_matlab.png" alt="Convolutional Neural Network Aufbau" loading="lazy">
+                <figcaption>CNN-Architektur: Faltungsschichten f&uuml;r Feature-Extraktion + vollverbundene Schichten f&uuml;r Klassifikation</figcaption>
+              </figure>
+            </div>
+            <div>
+              <h4>&#128203; Rekurrente Netze (RNN / LSTM)</h4>
+              <p>F&uuml;r sequentielle Daten: Text, Sprache, Zeitreihen. LSTM (Long Short-Term Memory) erm&ouml;glicht Abh&auml;ngigkeiten &uuml;ber lange Zeitr&auml;ume &ndash; Basis f&uuml;r Sprachmodelle und Zeitreihenprognose</p>
+            </div>
+          </div>
+          <p style="margin-top:0.75rem"><strong>Ben&ouml;tigt:</strong> Gro&szlig;e Datenmengen &bull; Spezialisierte GPUs f&uuml;rs Training &bull; Alternativ: <em>Transfer Learning</em> mit vortrainierten Modellen</p>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <h3 style="margin:1.75rem 0 1rem">&#128736; Sprachen &amp; Frameworks</h3>
+      <div class="ml-tools-grid">
+        <div class="ml-tool-card">
+          <div class="ml-tool-name">&#128013; Python</div>
+          <div class="ml-tool-label">Innovativ &amp; universell</div>
+          <ul>
+            <li>Gut lesbar, schneller Einstieg</li>
+            <li>Multiplattform (Windows, Linux, Mac, Raspberry Pi)</li>
+            <li>Riesiges &Ouml;kosystem: <strong>NumPy, Pandas, scikit-learn, Keras, PyTorch, TensorFlow</strong></li>
+            <li>Jupyter Notebook f&uuml;r interaktive Analyse</li>
+          </ul>
+          <span class="badge blue">Standard im ML</span>
+        </div>
+        <div class="ml-tool-card">
+          <div class="ml-tool-name">&#128200; MATLAB</div>
+          <div class="ml-tool-label">Industriell &amp; professionell</div>
+          <ul>
+            <li>Kommerziell, oft in Maschinenbau &amp; Elektrotechnik</li>
+            <li>Statistics &amp; Machine Learning Toolbox</li>
+            <li>Deep Learning Toolbox</li>
+            <li>Live Script Editor f&uuml;r interaktive Skripte</li>
+          </ul>
+          <span class="badge orange">Industriestandard</span>
+        </div>
+        <div class="ml-tool-card">
+          <div class="ml-tool-name">&#128202; R / RStudio</div>
+          <div class="ml-tool-label">Klassisch &amp; statistisch</div>
+          <ul>
+            <li>Open Source, kostenlos</li>
+            <li>Klarer Fokus auf Statistik &amp; Datenanalyse</li>
+            <li>Paket <code>rpart</code> f&uuml;r Entscheidungsb&auml;ume</li>
+            <li>Stark in Wissenschaft und Wirtschaft</li>
+          </ul>
+          <span class="badge green">Statistik-Standard</span>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <h3 style="margin:1.75rem 0 1rem">&#128336; Historische Meilensteine</h3>
+      <div class="ml-timeline">
+        <div class="ml-tl-item"><span class="ml-tl-year">1950</span><span>Erste k&uuml;nstliche neuronale Netzwerke</span></div>
+        <div class="ml-tl-item"><span class="ml-tl-year">1990</span><span>Klassisches ML als Disziplin der Datenanalyse etabliert</span></div>
+        <div class="ml-tl-item"><span class="ml-tl-year">1997</span><span>LSTM-Netzwerke &ndash; Deep Learning wird m&ouml;glich &bull; Tom Mitchell&#8217;s Lehrbuch &ldquo;Machine Learning&rdquo;</span></div>
+        <div class="ml-tl-item"><span class="ml-tl-year">2005</span><span>LeCun, Bengio, Hinton ver&ouml;ffentlichen Review-Artikel &uuml;ber Deep Learning in <em>Nature</em></span></div>
+        <div class="ml-tl-item"><span class="ml-tl-year">2010</span><span>Kaggle geht online &bull; Deep Learning bef&uuml;gelt neuen Hype</span></div>
+        <div class="ml-tl-item"><span class="ml-tl-year">2012</span><span>Google Brain identifiziert Katzen in YouTube-Videos mit neuronalem Netz</span></div>
+        <div class="ml-tl-item"><span class="ml-tl-year">2014</span><span>Facebook DeepFace &ndash; Gesichtserkennung auf menschlichem Niveau</span></div>
+        <div class="ml-tl-item"><span class="ml-tl-year">2022</span><span>ChatGPT Ver&ouml;ffentlichung &ndash; LLMs im Mainstream angekommen</span></div>
+        <div class="ml-tl-item"><span class="ml-tl-year">2023/24</span><span>Llama 2 &amp; 3 (Meta) &ndash; Open-Source-Sprachmodelle f&uuml;r eigene Anwendungen</span></div>
+      </div>
+
+    </div><!-- /ml-overview -->
+
+  </section>
+
+  <!-- DECISION TREE -->
+  <section id="decision-tree" class="card tab-panel">
+    <div class="section-header">
+      <span class="section-icon blue-bg">&#127795;</span>
+      <h2>Decision Tree</h2>
+    </div>
+    <div class="two-col">
+      <div>
+        <h3>Was ist ein Decision Tree?</h3>
+        <p>Ein Decision Tree ist ein überwachtes Lernverfahren, das Daten durch eine Reihe von if-else-Entscheidungen klassifiziert. Das Modell wählt bei jedem Knoten die Aufteilung, die den <em>Information Gain</em> oder den <em>Gini-Index</em> maximiert.</p>
+        <h4>Algorithmen im Vergleich</h4>
+        <table class="info-table">
+          <tr><th>Algorithmus</th><th>Splitting-Kriterium</th><th>Besonderheit</th></tr>
+          <tr><td>ID3</td><td>Information Gain (Entropie)</td><td>Nur kategorische Features</td></tr>
+          <tr><td>C4.5</td><td>Gain Ratio</td><td>Korrigiert Bias für viele Werte</td></tr>
+          <tr><td>CART</td><td>Gini-Index</td><td>Binäre Splits, scikit-learn Standard</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>Mathematik</h3>
+        <div class="formula-block">
+          <p><strong>Entropie:</strong></p>
+          <p>$H(S) = -\sum_{i=1}^{c} p_i \log_2 p_i$</p>
+          <p><strong>Information Gain:</strong></p>
+          <p>$IG(S, A) = H(S) - \sum_{v \in A} \frac{|S_v|}{|S|} H(S_v)$</p>
+          <p><strong>Gini-Index:</strong></p>
+          <p>$Gini(D) = 1 - \sum_{i=1}^{c} p_i^2$</p>
+          <p><strong>Gain Ratio (C4.5):</strong></p>
+          <p>$GainRatio(S, A) = \frac{IG(S, A)}{SplitInfo(S, A)}$</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Vollständiges scikit-learn Beispiel (Pima Indians Diabetes)</h3>
+    <pre><code class="python"># 1. Bibliotheken importieren
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier, export_graphviz
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+
+# 2. Daten laden
+url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv"
+col_names = ["Pregnancies","Glucose","BloodPressure","SkinThickness",
+             "Insulin","BMI","DiabetesPedigreeFunction","Age","Outcome"]
+df = pd.read_csv(url, header=None, names=col_names)
+
+# 3. Features und Zielvariable
+X = df[col_names[:-1]]
+y = df["Outcome"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1)
+
+# 4. Modell trainieren (Standard)
+clf = DecisionTreeClassifier()
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+print("Standard Accuracy:", metrics.accuracy_score(y_test, y_pred))  # ~67.5%
+
+# 5. Optimierter Baum&nbsp;&mdash; entropy + max_depth=3
+clf_opt = DecisionTreeClassifier(criterion="entropy", max_depth=3)
+clf_opt.fit(X_train, y_train)
+y_pred_opt = clf_opt.predict(X_test)
+print("Optimierte Accuracy:", metrics.accuracy_score(y_test, y_pred_opt))  # ~77.1%</code></pre>
+
+    <div class="result-box">
+      <strong>Ergebnis:</strong> Standard: 67.5% ? Optimiert (entropy, max_depth=3): <span class="highlight">77.1%</span>
+    </div>
+
+    <h3>Wichtige Hyperparameter</h3>
+    <table class="info-table">
+      <tr><th>Parameter</th><th>Werte</th><th>Effekt</th></tr>
+      <tr><td>criterion</td><td>"gini" / "entropy"</td><td>Splitting-Strategie</td></tr>
+      <tr><td>max_depth</td><td>1..N / None</td><td>Tiefe begrenzen verhindert Overfitting</td></tr>
+      <tr><td>min_samples_split</td><td>2..N</td><td>Mindestanzahl Samples für Split</td></tr>
+      <tr><td>min_samples_leaf</td><td>1..N</td><td>Mindestanzahl Samples im Blatt</td></tr>
+    </table>
+
+    <div class="pro-con">
+      <div class="pro">
+        <h4>&#9989; Vorteile</h4>
+        <ul>
+          <li>Einfach zu verstehen &amp; visualisieren</li>
+          <li>Kein Preprocessing nötig</li>
+          <li>Basis für Ensemble-Methoden (Random Forest, AdaBoost)</li>
+          <li>Decision Stump (max_depth=1) = Baustein für Boosting</li>
+        </ul>
+      </div>
+      <div class="con">
+        <h4>&#10060; Nachteile</h4>
+        <ul>
+          <li>Overfitting ohne Pruning</li>
+          <li>Instabil: kleine Datenänderungen = anderer Baum</li>
+          <li>Schwach bei Bilderdaten</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CNN -->
+  <section id="cnn" class="card tab-panel">
+    <div class="section-header">
+      <span class="section-icon green-bg">&#128065;</span>
+      <h2>Convolutional Neural Networks (CNN)</h2>
+    </div>
+
+    <h3>Biologische Inspiration</h3>
+    <p>CNNs wurden durch den visuellen Kortex inspiriert (Hubel &amp; Wiesel, 1962). Neuronen reagieren nur auf bestimmte Bereiche des Gesichtsfelds&nbsp;&mdash; das Konzept der "receptive fields". CNNs imitieren this durch lokale Filter, die über das Bild gleiten.</p>
+
+    <div class="two-col">
+      <div>
+        <h3>Architektur-Komponenten</h3>
+        <ol>
+          <li><strong>Conv Layer:</strong> Ein Kernel (Filter) gleitet über die Eingabe und berechnet Skalarprodukte ? Feature Maps</li>
+          <li><strong>ReLU:</strong> Nicht-lineare Aktivierung $f(x) = \max(0, x)$</li>
+          <li><strong>Pooling:</strong> Reduziert räumliche Dimension (Max-, Sum-, Average-Pooling)</li>
+          <li><strong>Fully Connected:</strong> Klassifikation basierend auf extrahierten Features</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Faltungsoperation</h3>
+        <div class="formula-block">
+          <p>$S(i,j) = (I * K)(i,j) = \sum_m \sum_n I(i+m, j+n) \cdot K(m,n)$</p>
+          <p>Wo $I$ = Input, $K$ = Kernel (Filter), $S$ = Feature Map</p>
+          <p><strong>Translational Invarianz:</strong> CNNs erkennen Muster unabhängig von Position im Bild</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Framework-Vergleich</h3>
+    <table class="info-table">
+      <tr><th>Framework</th><th>API-Level</th><th>Debugging</th><th>Einsatz</th><th>Stärke</th></tr>
+      <tr><td>PyTorch</td><td>Low-level</td><td>Einfach (Eager)</td><td>Forschung, Produktion</td><td>Flexibilität</td></tr>
+      <tr><td>TensorFlow</td><td>Low+High</td><td>Graph-basiert</td><td>Produktion, Mobile</td><td>Deployment-Tools</td></tr>
+      <tr><td>Keras</td><td>High-level</td><td>Sehr einfach</td><td>Prototyping</td><td>Einsteigerfreundlich</td></tr>
+    </table>
+
+    <h3>Vollständige CNN-Implementierung mit PyTorch (MNIST&nbsp;&mdash; 98.57%)</h3>
+    <pre><code class="python">import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch import optim
+from torch.utils.data import DataLoader
+import torchvision.datasets as datasets
+import torchvision.transforms as transforms
+
+# ---- CNN-Klasse ----
+class CNN(nn.Module):
+    def __init__(self, in_channels=1, num_classes=10):
+        super(CNN, self).__init__()
+        # Conv Layer 1: 1 ? 8 Filter, 3x3 Kernel
+        self.conv1 = nn.Conv2d(in_channels=in_channels, out_channels=8,
+                               kernel_size=3, padding=1)
+        # Max Pooling 2x2
+        self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
+        # Conv Layer 2: 8 ? 16 Filter
+        self.conv2 = nn.Conv2d(in_channels=8, out_channels=16,
+                               kernel_size=3, padding=1)
+        # Fully Connected: 16*7*7 ? 10 Klassen
+        self.fc1 = nn.Linear(16 * 7 * 7, num_classes)
+
+    def forward(self, x):
+        x = F.relu(self.conv1(x))   # [N, 8, 28, 28]
+        x = self.pool(x)            # [N, 8, 14, 14]
+        x = F.relu(self.conv2(x))   # [N, 16, 14, 14]
+        x = self.pool(x)            # [N, 16, 7, 7]
+        x = x.reshape(x.shape[0], -1)  # Flatten
+        x = self.fc1(x)
+        return x
+
+# ---- Training ----
+device = "cuda" if torch.cuda.is_available() else "cpu"
+batch_size = 60
+
+train_dataset = datasets.MNIST(root="dataset/", download=True, train=True,
+                                transform=transforms.ToTensor())
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+
+model = CNN(in_channels=1, num_classes=10).to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+for epoch in range(10):
+    for batch_idx, (data, targets) in enumerate(train_loader):
+        data, targets = data.to(device), targets.to(device)
+        optimizer.zero_grad()
+        predictions = model(data)
+        loss = criterion(predictions, targets)
+        loss.backward()
+        optimizer.step()
+
+# ---- Modell speichern ----
+torch.save(model.state_dict(), "MulticlassCNN.pth")
+
+# ---- Modell laden ----
+loaded_model = CNN(in_channels=1, num_classes=10)
+loaded_model.load_state_dict(torch.load("MulticlassCNN.pth"))</code></pre>
+
+    <div class="result-box">
+      <strong>Ergebnis nach 10 Epochen:</strong> Test Accuracy = <span class="highlight">98.57%</span> auf MNIST (70.000 Bilder, 10 Klassen)
+    </div>
+
+    <h3>Overfitting verhindern (7 Strategien)</h3>
+    <div class="strategy-grid">
+      <div class="strategy-item"><strong>1. Dropout</strong>&nbsp;&mdash; Neuronen zufällig nullsetzen während Training</div>
+      <div class="strategy-item"><strong>2. Batch Normalization</strong>&nbsp;&mdash; Aktivierungen normalisieren</div>
+      <div class="strategy-item"><strong>3. Pooling</strong>&nbsp;&mdash; Spatial dimension reduzieren</div>
+      <div class="strategy-item"><strong>4. Early Stopping</strong>&nbsp;&mdash; Training stoppen wenn Validierungsloss steigt</div>
+      <div class="strategy-item"><strong>5. L1 / L2 Regularisierung</strong>&nbsp;&mdash; Gewichte bestrafen</div>
+      <div class="strategy-item"><strong>6. Data Augmentation</strong>&nbsp;&mdash; Bilder flip, rotate, crop</div>
+      <div class="strategy-item"><strong>7. Noise Injection</strong>&nbsp;&mdash; Gaußsches Rauschen zum Input</div>
+    </div>
+  </section>
+
+  <!-- NEURAL NETWORKS -->
+  <section id="neural-net" class="card tab-panel">
+    <div class="section-header">
+      <span class="section-icon orange-bg">&#129504;</span>
+      <h2>Neural Networks (MLP) mit PyTorch</h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h3>Architektur eines normalen NN</h3>
+        <ul>
+          <li><strong>Input Layer:</strong> Anzahl Neuronen = Anzahl Features</li>
+          <li><strong>Hidden Layers:</strong> Beliebig viele&nbsp;&mdash; mehr Schichten = komplexere Muster</li>
+          <li><strong>Output Layer:</strong> Vorhersage (Klasse oder Wert)</li>
+        </ul>
+        <h4>Gewichtsinitialisierung</h4>
+        <table class="info-table">
+          <tr><th>Methode</th><th>Wann benutzen</th></tr>
+          <tr><td>Null-Init</td><td>Nie&nbsp;&mdash; Symmetrieproblem</td></tr>
+          <tr><td>Zufällig</td><td>Selten&nbsp;&mdash; explodierender Gradient</td></tr>
+          <tr><td>Xavier/Glorot</td><td>Sigmoid / Tanh Aktivierung</td></tr>
+          <tr><td>He/Kaiming</td><td>ReLU Aktivierung (empfohlen)</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>Forward Propagation</h3>
+        <div class="formula-block">
+          <p><strong>Gewichtete Summe:</strong></p>
+          <p>$z = \sum_{n} W_n X_n + b$</p>
+          <p><strong>Aktivierungsfunktionen:</strong></p>
+          <p>Sigmoid: $\sigma(x) = \frac{1}{1 + e^{-x}}$</p>
+          <p>Tanh: $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$</p>
+          <p>ReLU: $f(x) = \max(0, x)$</p>
+          <p>Softmax: $\sigma(z_i) = \frac{e^{z_i}}{\sum_j e^{z_j}}$</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Vollständiges Beispiel: 2-Layer NN mit make_circles (97% Accuracy)</h3>
+    <pre><code class="python">import torch
+import numpy as np
+from torch import nn, optim
+from torch.utils.data import Dataset, DataLoader
+from sklearn.datasets import make_circles
+from sklearn.model_selection import train_test_split
+
+# 1. Daten erzeugen
+X, y = make_circles(n_samples=10000, noise=0.05, random_state=26)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=26)
+
+# 2. Dataset-Klasse für PyTorch
+class Data(Dataset):
+    def __init__(self, X, y):
+        self.X = torch.from_numpy(X.astype(np.float32))
+        self.y = torch.from_numpy(y.astype(np.float32))
+        self.len = self.X.shape[0]
+    def __getitem__(self, i): return self.X[i], self.y[i]
+    def __len__(self): return self.len
+
+train_loader = DataLoader(Data(X_train, y_train), batch_size=64, shuffle=True)
+test_loader  = DataLoader(Data(X_test,  y_test),  batch_size=64, shuffle=True)
+
+# 3. Modellarchitektur
+class NeuralNetwork(nn.Module):
+    def __init__(self, input_dim=2, hidden_dim=10, output_dim=1):
+        super().__init__()
+        self.layer_1 = nn.Linear(input_dim, hidden_dim)
+        nn.init.kaiming_uniform_(self.layer_1.weight, nonlinearity="relu")
+        self.layer_2 = nn.Linear(hidden_dim, output_dim)
+
+    def forward(self, x):
+        x = torch.relu(self.layer_1(x))
+        x = torch.sigmoid(self.layer_2(x))
+        return x
+
+model = NeuralNetwork()
+loss_fn = nn.BCELoss()
+optimizer = optim.SGD(model.parameters(), lr=0.1)
+
+# 4. Training (100 Epochen)
+for epoch in range(100):
+    for X_batch, y_batch in train_loader:
+        optimizer.zero_grad()
+        pred = model(X_batch)
+        loss = loss_fn(pred, y_batch.unsqueeze(-1))
+        loss.backward()
+        optimizer.step()
+
+# 5. Evaluation
+correct, total = 0, 0
+with torch.no_grad():
+    for X_batch, y_batch in test_loader:
+        outputs = model(X_batch)
+        predicted = (outputs.numpy() >= 0.5).astype(int).flatten()
+        total += y_batch.size(0)
+        correct += (predicted == y_batch.numpy()).sum()
+
+print(f"Accuracy: {100 * correct // total}%")  # ~97%</code></pre>
+
+    <div class="result-box">
+      <strong>Ergebnis:</strong> Accuracy = <span class="highlight">97%</span> auf 3300 Test-Instanzen des make_circles Datensatzes
+    </div>
+
+    <h3>Backpropagation</h3>
+    <p>Am Ende jedes Forward-Pass berechnet das Modell den Verlust. Per Backpropagation werden Gradienten durch alle Schichten zurückpropagiert (Chain Rule). Der Optimizer aktualisiert die Gewichte, um den Verlust zu minimieren.</p>
+    <div class="formula-block">
+      <p>$W_{new} = W_{old} - \eta \cdot \frac{\partial L}{\partial W}$</p>
+      <p>Wo $\eta$ = Lernrate, $L$ = Verlustfunktion</p>
+    </div>
+  </section>
+
+  <!-- TRANSFORMER -->
+  <section id="transformer" class="card tab-panel">
+    <div class="section-header">
+      <span class="section-icon purple-bg">&#9889;</span>
+      <h2>Transformer mit PyTorch</h2>
+    </div>
+
+    <h3>Entstehung &amp; Bedeutung</h3>
+    <p>Transformer wurden 2017 im Paper <em>"Attention is All You Need"</em> (Vaswani et al.) vorgestellt. Sie revolutionierten NLP, weil sie Langzeit-Abhängigkeiten in Sequenzen besser erfassen als LSTMs&nbsp;&mdash; dank paralleler Berechnung und Self-Attention.</p>
+
+    <div class="two-col">
+      <div>
+        <h3>Kernkomponenten</h3>
+        <table class="info-table">
+          <tr><th>Komponente</th><th>Funktion</th></tr>
+          <tr><td>Multi-Head Attention</td><td>Verschiedene Aspekte der Eingabe parallel erfassen</td></tr>
+          <tr><td>Feed-Forward Network</td><td>Positionsweise Transformation der Features</td></tr>
+          <tr><td>Positional Encoding</td><td>Positionsinformation ohne Rekurrenz hinzufügen</td></tr>
+          <tr><td>Layer Normalization</td><td>Training stabilisieren</td></tr>
+          <tr><td>Residual Connections</td><td>Vanishing Gradient verhindern</td></tr>
+          <tr><td>Dropout</td><td>Overfitting regularisieren</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>Attention-Mathematik</h3>
+        <div class="formula-block">
+          <p><strong>Scaled Dot-Product Attention:</strong></p>
+          <p>$Attention(Q,K,V) = softmax\left(\frac{QK^T}{\sqrt{d_k}}\right) V$</p>
+          <p>Q = Query, K = Key, V = Value, $d_k$ = Key-Dimension</p>
+          <p><strong>Positional Encoding:</strong></p>
+          <p>$PE_{(pos,2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)$</p>
+          <p>$PE_{(pos,2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)$</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Vollständige Transformer-Implementierung</h3>
+    <pre><code class="python">import torch, torch.nn as nn, torch.optim as optim, math, copy
+
+# ---- 1. Multi-Head Attention ----
+class MultiHeadAttention(nn.Module):
+    def __init__(self, d_model, num_heads):
+        super().__init__()
+        assert d_model % num_heads == 0
+        self.d_k = d_model // num_heads
+        self.num_heads = num_heads
+        self.W_q = nn.Linear(d_model, d_model)
+        self.W_k = nn.Linear(d_model, d_model)
+        self.W_v = nn.Linear(d_model, d_model)
+        self.W_o = nn.Linear(d_model, d_model)
+
+    def scaled_dot_product_attention(self, Q, K, V, mask=None):
+        scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(self.d_k)
+        if mask is not None:
+            scores = scores.masked_fill(mask == 0, -1e9)
+        return torch.matmul(torch.softmax(scores, dim=-1), V)
+
+    def split_heads(self, x):
+        B, L, D = x.size()
+        return x.view(B, L, self.num_heads, self.d_k).transpose(1, 2)
+
+    def combine_heads(self, x):
+        B, _, L, d_k = x.size()
+        return x.transpose(1, 2).contiguous().view(B, L, self.num_heads * d_k)
+
+    def forward(self, Q, K, V, mask=None):
+        Q = self.split_heads(self.W_q(Q))
+        K = self.split_heads(self.W_k(K))
+        V = self.split_heads(self.W_v(V))
+        return self.W_o(self.combine_heads(self.scaled_dot_product_attention(Q, K, V, mask)))
+
+# ---- 2. Position-wise Feed-Forward ----
+class PositionWiseFeedForward(nn.Module):
+    def __init__(self, d_model, d_ff):
+        super().__init__()
+        self.fc1 = nn.Linear(d_model, d_ff)
+        self.fc2 = nn.Linear(d_ff, d_model)
+        self.relu = nn.ReLU()
+    def forward(self, x):
+        return self.fc2(self.relu(self.fc1(x)))
+
+# ---- 3. Positional Encoding ----
+class PositionalEncoding(nn.Module):
+    def __init__(self, d_model, max_seq_length):
+        super().__init__()
+        pe = torch.zeros(max_seq_length, d_model)
+        position = torch.arange(0, max_seq_length, dtype=torch.float).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2).float() * -(math.log(10000.0) / d_model))
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        self.register_buffer('pe', pe.unsqueeze(0))
+    def forward(self, x):
+        return x + self.pe[:, :x.size(1)]
+
+# ---- 4. Encoder Layer ----
+class EncoderLayer(nn.Module):
+    def __init__(self, d_model, num_heads, d_ff, dropout):
+        super().__init__()
+        self.self_attn = MultiHeadAttention(d_model, num_heads)
+        self.ff = PositionWiseFeedForward(d_model, d_ff)
+        self.norm1 = nn.LayerNorm(d_model)
+        self.norm2 = nn.LayerNorm(d_model)
+        self.dropout = nn.Dropout(dropout)
+    def forward(self, x, mask):
+        x = self.norm1(x + self.dropout(self.self_attn(x, x, x, mask)))
+        return self.norm2(x + self.dropout(self.ff(x)))
+
+# ---- 5. Decoder Layer ----
+class DecoderLayer(nn.Module):
+    def __init__(self, d_model, num_heads, d_ff, dropout):
+        super().__init__()
+        self.self_attn  = MultiHeadAttention(d_model, num_heads)
+        self.cross_attn = MultiHeadAttention(d_model, num_heads)
+        self.ff = PositionWiseFeedForward(d_model, d_ff)
+        self.norm1 = nn.LayerNorm(d_model)
+        self.norm2 = nn.LayerNorm(d_model)
+        self.norm3 = nn.LayerNorm(d_model)
+        self.dropout = nn.Dropout(dropout)
+    def forward(self, x, enc_out, src_mask, tgt_mask):
+        x = self.norm1(x + self.dropout(self.self_attn(x, x, x, tgt_mask)))
+        x = self.norm2(x + self.dropout(self.cross_attn(x, enc_out, enc_out, src_mask)))
+        return self.norm3(x + self.dropout(self.ff(x)))
+
+# ---- 6. Vollständiger Transformer ----
+class Transformer(nn.Module):
+    def __init__(self, src_vocab, tgt_vocab, d_model=512, heads=8,
+                 layers=6, d_ff=2048, max_len=100, dropout=0.1):
+        super().__init__()
+        self.enc_emb = nn.Embedding(src_vocab, d_model)
+        self.dec_emb = nn.Embedding(tgt_vocab, d_model)
+        self.pos_enc = PositionalEncoding(d_model, max_len)
+        self.encoders = nn.ModuleList([EncoderLayer(d_model, heads, d_ff, dropout) for _ in range(layers)])
+        self.decoders = nn.ModuleList([DecoderLayer(d_model, heads, d_ff, dropout) for _ in range(layers)])
+        self.fc_out = nn.Linear(d_model, tgt_vocab)
+        self.dropout = nn.Dropout(dropout)
+
+    def generate_mask(self, src, tgt):
+        src_mask = (src != 0).unsqueeze(1).unsqueeze(2)
+        tgt_mask = (tgt != 0).unsqueeze(1).unsqueeze(3)
+        L = tgt.size(1)
+        nopeak = (1 - torch.triu(torch.ones(1, L, L), diagonal=1)).bool()
+        return src_mask, tgt_mask & nopeak
+
+    def forward(self, src, tgt):
+        src_m, tgt_m = self.generate_mask(src, tgt)
+        enc = self.dropout(self.pos_enc(self.enc_emb(src)))
+        dec = self.dropout(self.pos_enc(self.dec_emb(tgt)))
+        for layer in self.encoders: enc = layer(enc, src_m)
+        for layer in self.decoders: dec = layer(dec, enc, src_m, tgt_m)
+        return self.fc_out(dec)
+
+# ---- Training ----
+transformer = Transformer(src_vocab=5000, tgt_vocab=5000)
+criterion = nn.CrossEntropyLoss(ignore_index=0)
+optimizer = optim.Adam(transformer.parameters(), lr=0.0001, betas=(0.9, 0.98), eps=1e-9)
+
+src_data = torch.randint(1, 5000, (64, 100))
+tgt_data = torch.randint(1, 5000, (64, 100))
+
+transformer.train()
+for epoch in range(100):
+    optimizer.zero_grad()
+    output = transformer(src_data, tgt_data[:, :-1])
+    loss = criterion(output.contiguous().view(-1, 5000), tgt_data[:, 1:].contiguous().view(-1))
+    loss.backward()
+    optimizer.step()
+    if (epoch+1) % 10 == 0:
+        print(f"Epoch {epoch+1}/100, Loss: {loss.item():.4f}")</code></pre>
+
+    <h3>Typische Hyperparameter</h3>
+    <table class="info-table">
+      <tr><th>Parameter</th><th>Typische Werte</th><th>Hinweis</th></tr>
+      <tr><td>d_model</td><td>256, 512, 1024</td><td>Größer = mehr Kapazität, mehr Rechenaufwand</td></tr>
+      <tr><td>num_heads</td><td>8, 12, 16</td><td>d_model muss durch num_heads teilbar sein</td></tr>
+      <tr><td>num_layers</td><td>6, 12, 24</td><td>Mehr Schichten = komplexere Repräsentation</td></tr>
+      <tr><td>d_ff</td><td>2048, 4096</td><td>Meist 4&times; d_model</td></tr>
+      <tr><td>dropout</td><td>0.1, 0.3</td><td>Regularisierung</td></tr>
+      <tr><td>lr</td><td>0.0001&ndash;0.001</td><td>Adam mit Warmup empfohlen</td></tr>
+    </table>
+  </section>
+
+  <!-- ONNX -->
+  <section id="onnx" class="card tab-panel">
+    <div class="section-header">
+      <span class="section-icon red-bg">&#128640;</span>
+      <h2>ONNX&nbsp;&mdash; Modelle deployen</h2>
+    </div>
+
+    <h3>Was ist ONNX?</h3>
+    <p>ONNX (Open Neural Network Exchange) ist ein universelles Format für ML-Modelle&nbsp;&mdash; 2017 von Microsoft und Meta gestartet. Ein in PyTorch trainiertes Modell kann ohne Code-Umschreiben in TensorFlow oder auf Edge-Geräten deployed werden.</p>
+
+    <div class="two-col">
+      <div>
+        <h3>Dateiformat</h3>
+        <ul>
+          <li><strong>Graph:</strong> Netzwerkarchitektur</li>
+          <li><strong>Weights:</strong> Trainierte Parameter</li>
+          <li><strong>Metadaten:</strong> Version, Name, Dokumentation</li>
+          <li><strong>Opset-Version:</strong> Welche Operationen verfügbar</li>
+        </ul>
+        <p>Dateiformat: <strong>Protocol Buffers (protobuf)</strong>&nbsp;&mdash; binär, kleiner als JSON/XML</p>
+      </div>
+      <div>
+        <h3>Execution Providers</h3>
+        <ul>
+          <li><code>CPUExecutionProvider</code>&nbsp;&mdash; überall</li>
+          <li><code>CUDAExecutionProvider</code>&nbsp;&mdash; NVIDIA GPU</li>
+          <li><code>TensorRTExecutionProvider</code>&nbsp;&mdash; NVIDIA TensorRT</li>
+          <li><code>CoreMLExecutionProvider</code>&nbsp;&mdash; Apple M1/M2</li>
+          <li><code>OpenVINOExecutionProvider</code>&nbsp;&mdash; Intel</li>
+          <li><code>ROCMExecutionProvider</code>&nbsp;&mdash; AMD GPU</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>PyTorch ? ONNX Export</h3>
+    <pre><code class="python">import torch, torch.nn as nn
+
+class SimpleModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.fc = nn.Linear(10, 5)
+    def forward(self, x):
+        return self.fc(x)
+
+model = SimpleModel()
+model.eval()  # WICHTIG: vor Export!
+
+dummy_input = torch.randn(1, 10)
+
+torch.onnx.export(
+    model,
+    dummy_input,
+    "model.onnx",
+    input_names=["input"],
+    output_names=["output"],
+    dynamic_shapes={"x": {0: "batch_size"}}  # Variable Batch Size
+)
+print("Exportiert!")</code></pre>
+
+    <h3>ONNX Runtime&nbsp;&mdash; Inferenz ausführen</h3>
+    <pre><code class="python">import onnxruntime as ort
+import numpy as np
+
+# Modell laden und validieren
+import onnx
+model = onnx.load("model.onnx")
+onnx.checker.check_model(model)
+
+# Inferenz-Session erstellen
+session = ort.InferenceSession(
+    "model.onnx",
+    providers=["CUDAExecutionProvider", "CPUExecutionProvider"]  # GPU mit CPU Fallback
+)
+
+input_name = session.get_inputs()[0].name
+output_name = session.get_outputs()[0].name
+
+# Inferenz
+test_input = np.random.randn(1, 10).astype(np.float32)
+result = session.run([output_name], {input_name: test_input})
+print("Prediction:", result[0])</code></pre>
+
+    <h3>Modell-Optimierung: Quantisierung</h3>
+    <pre><code class="python">from onnxruntime.quantization import quantize_dynamic, QuantType
+
+# Dynamische Quantisierung: FP32 ? INT8
+quantize_dynamic(
+    model_input="model.onnx",
+    model_output="model_quantized.onnx",
+    weight_type=QuantType.QUInt8
+)
+# Ergebnis: 4x kleiner, 2-4x schneller, ~1-2% Genauigkeitsverlust</code></pre>
+
+    <h3>FastAPI Deployment</h3>
+    <pre><code class="python">from fastapi import FastAPI
+import onnxruntime as ort
+import numpy as np
+
+app = FastAPI()
+session = ort.InferenceSession("model.onnx")
+
+@app.post("/predict")
+async def predict(data: dict):
+    input_data = np.array(data["input"], dtype=np.float32).reshape(1, -1)
+    outputs = session.run(None, {"input": input_data})
+    return {"prediction": outputs[0].tolist()}
+
+@app.get("/health")
+async def health():
+    return {"status": "healthy"}</code></pre>
+
+    <div class="result-box">
+      <strong>Quantisierung Effekte:</strong> INT8 = 4x kleiner | 2&ndash;4x schnellere Inferenz | ~1&ndash;2% Genauigkeitsverlust
+    </div>
+  </section>
+
+
+  <!-- NAIVE BAYES -->
+  <section id="naive-bayes" class="card tab-panel">
+    <div class="section-header">
+      <span class="section-icon cyan-bg">&#127358;</span>
+      <h2>Naive Bayes</h2>
+    </div>
+    <span class="badge cyan">scikit-learn</span>
+    <p style="margin-top:0.75rem">Naive Bayes ist ein probabilistischer Klassifikator, der auf dem <strong>Satz von Bayes</strong> basiert. Er gilt als &#8222;naiv&#8220;, da er <em>bedingte Unabh&#228;ngigkeit</em> zwischen allen Features annimmt &ndash; eine Vereinfachung, die in der Praxis trotzdem beindruckende Ergebnisse liefert, besonders bei Textklassifikation und Spam-Filterung.</p>
+
+    <h3>Bayes-Theorem</h3>
+    <div class="two-col">
+      <div class="formula-block">
+        <h4>Formel</h4>
+        <p>$$P(h \mid D) = \frac{P(D \mid h) \cdot P(h)}{P(D)}$$</p>
+        <ul style="margin-top:0.75rem">
+          <li><strong>P(h&#124;D)</strong> &ndash; Posterior: Wahrscheinlichkeit der Hypothese nach Beobachtung</li>
+          <li><strong>P(D&#124;h)</strong> &ndash; Likelihood: Wahrscheinlichkeit der Daten bei gegebener Hypothese</li>
+          <li><strong>P(h)</strong> &ndash; Prior: Vorab bekannte Wahrscheinlichkeit der Hypothese</li>
+          <li><strong>P(D)</strong> &ndash; Evidence: Normalisierungskonstante</li>
+        </ul>
+      </div>
+      <div class="formula-block">
+        <h4>Unabh&#228;ngigkeits-Annahme</h4>
+        <p>$$P(x_1, x_2, \ldots, x_n \mid C) = \prod_{i=1}^{n} P(x_i \mid C)$$</p>
+        <p>Jedes Feature $x_i$ wird als unabh&#228;ngig von allen anderen gegeben der Klasse $C$ betrachtet. Diese Vereinfachung macht den Algorithmus sehr effizient.</p>
+      </div>
+    </div>
+
+    <h3>Varianten</h3>
+    <table class="info-table">
+      <tr><th>Typ</th><th>Features</th><th>Typische Anwendung</th></tr>
+      <tr><td><strong>Gaussian NB</strong></td><td>Stetige Werte (Normalverteilung)</td><td>Medizin, Sensorwerte</td></tr>
+      <tr><td><strong>Multinomial NB</strong></td><td>Z&#228;hlwerte, H&#228;ufigkeiten</td><td>Textklassifikation, NLP</td></tr>
+      <tr><td><strong>Bernoulli NB</strong></td><td>Bin&#228;re Features (0/1)</td><td>Spam-Filter, Dokumenten-Klassifikation</td></tr>
+    </table>
+
+    <h3>Zero-Probability-Problem &amp; Laplace-Smoothing</h3>
+    <div class="two-col">
+      <div>
+        <p>Wenn ein Feature-Wert in den Trainingsdaten nie zusammen mit einer bestimmten Klasse vorkommt, wird die Wahrscheinlichkeit <strong>0</strong>. Das macht das gesamte Produkt zu 0 &ndash; ein kritischer Fehler.</p>
+        <p style="margin-top:0.5rem"><strong>L&#246;sung: Laplace Smoothing (Add-1)</strong></p>
+        <div class="formula-block">
+          <p>$$P(x_i \mid C) = \frac{\text{count}(x_i, C) + 1}{\text{count}(C) + k}$$</p>
+          <p>wobei $k$ = Anzahl der m&#246;glichen Werte des Features</p>
+        </div>
+      </div>
+      <div>
+        <p><strong>Log-Wahrscheinlichkeiten</strong> werden eingesetzt, um numerischen Unterlauf bei vielen Features zu vermeiden:</p>
+        <div class="formula-block">
+          <p>$$\log P(C \mid x) = \log P(C) + \sum_{i=1}^{n} \log P(x_i \mid C)$$</p>
+        </div>
+        <p style="font-size:0.85rem;color:var(--text-muted)">scikit-learn verwendet intern Log-Wahrscheinlichkeiten automatisch.</p>
+      </div>
+    </div>
+
+    <h3>Praxis: Klassifikation mit GaussianNB</h3>
+    <p>Dataset: Synthetisch generiert mit <code>make_classification</code> &ndash; 800 Samples, 6 Features, 3 Klassen</p>
+    <pre><code>from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score, f1_score, classification_report
+
+# Datensatz erstellen
+X, y = make_classification(
+    n_features=6,
+    n_classes=3,
+    n_samples=800,
+    n_informative=2,
+    random_state=1,
+    n_clusters_per_class=1
+)
+
+# Train/Test Split (80/20)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Gaussian Naive Bayes Modell
+model = GaussianNB()
+model.fit(X_train, y_train)
+
+# Vorhersage
+y_pred = model.predict(X_test)
+
+# Ergebnisse
+print(f"Accuracy: {accuracy_score(y_test, y_pred):.4f}")   # 0.8485
+print(f"F1-Score: {f1_score(y_test, y_pred, average='weighted'):.4f}")  # 0.8491
+print(classification_report(y_test, y_pred))</code></pre>
+    <div class="result-box">
+      <strong>Ergebnis:</strong> Accuracy: <strong>84.85%</strong> &nbsp;|&nbsp; F1-Score (weighted): <strong>84.91%</strong> &mdash; mit nur 3 Zeilen Modellcode!
+    </div>
+
+    <h3>Praxis: Kredit-Klassifikation (reale Daten)</h3>
+    <p>Dataset: Loan-Daten &ndash; 9.578 Eintr&#228;ge, 14 Features, Zielvariable: <code>not.fully.paid</code></p>
+    <pre><code>import pandas as pd
+from sklearn.naive_bayes import GaussianNB
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, f1_score
+
+# Daten laden (z.B. Kaggle Loan Dataset)
+df = pd.read_csv("loan_data.csv")
+X = df.drop("not.fully.paid", axis=1)
+y = df["not.fully.paid"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+gnb = GaussianNB()
+gnb.fit(X_train, y_train)
+y_pred = gnb.predict(X_test)
+
+print(f"Accuracy: {accuracy_score(y_test, y_pred):.4f}")   # 0.8206
+print(f"F1-Score: {f1_score(y_test, y_pred):.4f}")         # 0.8687</code></pre>
+    <div class="result-box">
+      <strong>Ergebnis auf Kredit-Daten:</strong> Accuracy: <strong>82.06%</strong> &nbsp;|&nbsp; F1-Score: <strong>86.87%</strong> &mdash; deutlich besser als der Zufalls-Baseline von 50%
+    </div>
+
+    <h3>Vor- und Nachteile</h3>
+    <div class="two-col">
+      <div>
+        <h4>&#10003; Vorteile</h4>
+        <ul>
+          <li>Extrem schnelles Training und Inferenz</li>
+          <li>Wenig Compute / kein GPU ben&#246;tigt</li>
+          <li>Funktioniert gut mit <strong>wenigen Trainingsdaten</strong></li>
+          <li>Nat&#252;rliche Unterst&#252;tzung f&#252;r <strong>Mehrklassen-Probleme</strong></li>
+          <li>Ideal f&#252;r <strong>Textanalyse und NLP</strong></li>
+          <li>Robust gegen&#252;ber irrelevanten Features</li>
+        </ul>
+      </div>
+      <div>
+        <h4>&#10007; Nachteile</h4>
+        <ul>
+          <li>Unabh&#228;ngigkeits-Annahme meist <strong>unrealistisch</strong></li>
+          <li>Zero-Probability-Problem ohne Smoothing</li>
+          <li>Kann korrelierte Features nicht modellieren</li>
+          <li>Schlechter bei komplexen nicht-linearen Grenzen</li>
+          <li>Gaussian-Annahme stimmt nicht immer f&#252;r reale Daten</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Typische Anwendungen</h3>
+    <div class="decision-grid" style="grid-template-columns: repeat(auto-fill,minmax(180px,1fr))">
+      <div class="decision-card border-cyan">
+        <h3>&#128231; Spam-Filter</h3>
+        <p style="font-size:0.85rem">E-Mail / SMS Klassifikation nach Wortwahrscheinlichkeiten</p>
+        <span class="badge cyan">Multinomial NB</span>
+      </div>
+      <div class="decision-card border-cyan">
+        <h3>&#128196; Sentiment</h3>
+        <p style="font-size:0.85rem">Produkt-Bewertungen, Social-Media-Stimmungsanalyse</p>
+        <span class="badge cyan">NLP</span>
+      </div>
+      <div class="decision-card border-cyan">
+        <h3>&#127973; Medizin</h3>
+        <p style="font-size:0.85rem">Krankheitsdiagnose aus Symptomen und Labordaten</p>
+        <span class="badge cyan">Gaussian NB</span>
+      </div>
+      <div class="decision-card border-cyan">
+        <h3>&#128269; Klassifikation</h3>
+        <p style="font-size:0.85rem">Dokumenten-Kategorisierung, News-Themen-Zuordnung</p>
+        <span class="badge cyan">Bernoulli NB</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGISTISCHE REGRESSION -->
+  <section id="logistic-reg" class="card tab-panel">
+    <div class="section-header">
+      <span class="section-icon indigo-bg">&#128200;</span>
+      <h2>Logistische Regression</h2>
+    </div>
+    <span class="badge indigo">scikit-learn</span>
+    <p style="margin-top:0.75rem">Logistische Regression ist eines der <strong>einfachsten und am weitesten verbreiteten</strong> Machine-Learning-Verfahren f&#252;r bin&#228;re Klassifikation. Sie berechnet durch eine <em>Sigmoid-Funktion</em> eine Wahrscheinlichkeit f&#252;r jede Klasse und bildet damit die Grundlage f&#252;r viele Deep-Learning-Konzepte.</p>
+
+    <h3>Mathematik</h3>
+    <div class="two-col">
+      <div class="formula-block">
+        <h4>Sigmoid-Funktion</h4>
+        <p>$$\sigma(z) = \frac{1}{1 + e^{-z}}$$</p>
+        <p>Mappt jeden reellen Wert auf den Bereich $(0, 1)$ &ndash; interpretierbar als Wahrscheinlichkeit:</p>
+        <ul style="margin-top:0.5rem">
+          <li>$z \to +\infty$: $\sigma(z) \to 1$</li>
+          <li>$z \to -\infty$: $\sigma(z) \to 0$</li>
+          <li>$\sigma(0) = 0.5$ (Entscheidungsgrenze)</li>
+        </ul>
+      </div>
+      <div class="formula-block">
+        <h4>Modell</h4>
+        <p>$$z = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_n x_n$$</p>
+        <p>$$\hat{y} = \sigma(z) = \frac{1}{1 + e^{-(\beta_0 + \boldsymbol{\beta}^T \mathbf{x})}}$$</p>
+        <p style="margin-top:0.5rem">Entscheidungsregel: Klasse 1 wenn $\hat{y} \geq 0.5$, sonst Klasse 0.</p>
+      </div>
+    </div>
+
+    <h3>Log-Likelihood &amp; Verlustfunktion</h3>
+    <div class="formula-block" style="max-width:680px">
+      <p><strong>Binary Cross-Entropy Loss:</strong></p>
+      <p>$$\mathcal{L} = -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(\hat{y}^{(i)}) + (1 - y^{(i)}) \log(1 - \hat{y}^{(i)}) \right]$$</p>
+      <p>Minimiert durch <strong>Gradient Descent</strong> oder <strong>Maximum Likelihood Estimation (MLE)</strong>. Der Parameterupdate lautet:</p>
+      <p>$$\beta_j := \beta_j - \alpha \frac{\partial \mathcal{L}}{\partial \beta_j}$$</p>
+    </div>
+
+    <h3>Varianten</h3>
+    <table class="info-table">
+      <tr><th>Typ</th><th>Zielvariable</th><th>Typische Anwendung</th></tr>
+      <tr><td><strong>Binary</strong></td><td>2 Klassen (0/1)</td><td>Spam, Kredit-Risiko, Diabetesdiagnose</td></tr>
+      <tr><td><strong>Multinomial</strong></td><td>3+ nominale Klassen</td><td>Weinsorte, Artikelkategorie</td></tr>
+      <tr><td><strong>Ordinal</strong></td><td>3+ ordinale Klassen</td><td>Restaurant-Bewertungen (1&ndash;5 Sterne)</td></tr>
+    </table>
+
+    <h3>Praxis: Diabetes-Vorhersage (Pima Indians)</h3>
+    <p>Dataset: 768 Eintr&#228;ge, 8 medizinische Features, Zielvariable: Diabetes (0/1)</p>
+    <pre><code>import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import (accuracy_score, classification_report,
+                              confusion_matrix, roc_auc_score)
+
+# Daten laden (Pima Indians Diabetes, z.B. von Kaggle)
+col_names = ['pregnant','glucose','bp','skin','insulin','bmi','pedigree','age','label']
+pima = pd.read_csv("pima-indians-diabetes.csv", header=None, names=col_names)
+
+# Features und Zielvariable
+feature_cols = ['pregnant','insulin','bmi','age','glucose','bp','pedigree']
+X = pima[feature_cols]
+y = pima.label
+
+# Train/Test Split (75/25)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=16
+)
+
+# Logistische Regression
+logreg = LogisticRegression(random_state=16, max_iter=200)
+logreg.fit(X_train, y_train)
+y_pred = logreg.predict(X_test)
+
+# Metriken
+print(f"Accuracy : {accuracy_score(y_test, y_pred):.4f}")    # 0.8000
+
+# ROC-AUC
+y_prob = logreg.predict_proba(X_test)[:,1]
+print(f"ROC-AUC  : {roc_auc_score(y_test, y_prob):.4f}")     # 0.88
+
+print(classification_report(y_test, y_pred,
+      target_names=['ohne Diabetes','mit Diabetes']))</code></pre>
+    <div class="result-box">
+      <strong>Ergebnis:</strong> Accuracy: <strong>80.0%</strong> &nbsp;|&nbsp; ROC-AUC: <strong>0.88</strong> &mdash; Konfusionsmatrix: 115 TN, 39 TP, 8 FP, 30 FN
+    </div>
+
+    <h3>Konfusionsmatrix erkl&#228;rt</h3>
+    <div class="two-col">
+      <div>
+        <table class="info-table">
+          <tr><th></th><th>Vorhergesagt: Kein Diabetes</th><th>Vorhergesagt: Diabetes</th></tr>
+          <tr><td><strong>Tats&#228;chlich: Kein Diabetes</strong></td><td>115 (TN &#10003;)</td><td>8 (FP &#10007;)</td></tr>
+          <tr><td><strong>Tats&#228;chlich: Diabetes</strong></td><td>30 (FN &#10007;)</td><td>39 (TP &#10003;)</td></tr>
+        </table>
+      </div>
+      <div class="formula-block">
+        <h4>Wichtige Metriken</h4>
+        <p><strong>Pr&#228;zision:</strong> $P = \frac{TP}{TP+FP} = \frac{39}{47} \approx 83\%$</p>
+        <p><strong>Recall:</strong> $R = \frac{TP}{TP+FN} = \frac{39}{69} \approx 57\%$</p>
+        <p><strong>F1-Score:</strong> $F_1 = 2 \cdot \frac{P \cdot R}{P + R} \approx 0.67$</p>
+      </div>
+    </div>
+
+    <h3>Regularisierung</h3>
+    <div class="two-col">
+      <div class="formula-block">
+        <h4>L1-Regularisierung (Lasso)</h4>
+        <p>$$\mathcal{L}_{L1} = \mathcal{L} + \lambda \sum_j |\beta_j|$$</p>
+        <p>Erzwingt <strong>Sparsit&#228;t</strong>: unwichtige Koeffizienten werden exakt auf 0 gesetzt. Gut f&#252;r Feature-Selektion.</p>
+        <pre><code>LogisticRegression(penalty='l1', solver='liblinear', C=1.0)</code></pre>
+      </div>
+      <div class="formula-block">
+        <h4>L2-Regularisierung (Ridge)</h4>
+        <p>$$\mathcal{L}_{L2} = \mathcal{L} + \lambda \sum_j \beta_j^2$$</p>
+        <p>Verkleinert alle Koeffizienten gleichm&#228;&#223;ig. <strong>Standard in scikit-learn</strong> (C=1.0 &asymp; &lambda;=1).</p>
+        <pre><code>LogisticRegression(penalty='l2', C=1.0)  # Standard</code></pre>
+      </div>
+    </div>
+
+    <h3>Vor- und Nachteile</h3>
+    <div class="two-col">
+      <div>
+        <h4>&#10003; Vorteile</h4>
+        <ul>
+          <li>Einfach zu implementieren und interpretieren</li>
+          <li>Koeffizienten direkt als Feature-Gewichte lesbar</li>
+          <li>Kein Scaling der Features ben&#246;tigt</li>
+          <li>Liefert kalibrierte <strong>Wahrscheinlichkeiten</strong></li>
+          <li>Solide <strong>Baseline</strong> f&#252;r jede Klassifikationsaufgabe</li>
+          <li>Grundlage f&#252;r Deep Learning (Sigmoid/Softmax)</li>
+        </ul>
+      </div>
+      <div>
+        <h4>&#10007; Nachteile</h4>
+        <ul>
+          <li>Kann nicht-lineare Entscheidungsgrenzen nicht lernen</li>
+          <li>Anf&#228;llig f&#252;r <strong>Overfitting</strong> ohne Regularisierung</li>
+          <li>Schwach bei sehr vielen Kategorie-Features</li>
+          <li>Korrelierte Features verzerren Koeffizienten</li>
+          <li>Skaliert schlecht mit sehr gro&#223;en Feature-R&#228;umen</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Typische Anwendungen</h3>
+    <div class="decision-grid" style="grid-template-columns: repeat(auto-fill,minmax(180px,1fr))">
+      <div class="decision-card border-indigo">
+        <h3>&#127973; Medizin</h3>
+        <p style="font-size:0.85rem">Diabetes-, Krebs- und Herzerkrankungs-Diagnose</p>
+        <span class="badge indigo">Diagnose</span>
+      </div>
+      <div class="decision-card border-indigo">
+        <h3>&#128179; Kredit</h3>
+        <p style="font-size:0.85rem">Kreditrisiko-Bewertung, Ausfallwahrscheinlichkeit</p>
+        <span class="badge indigo">Fintech</span>
+      </div>
+      <div class="decision-card border-indigo">
+        <h3>&#128231; Spam</h3>
+        <p style="font-size:0.85rem">E-Mail-Filterung, SMS-Spam-Erkennung</p>
+        <span class="badge indigo">NLP</span>
+      </div>
+      <div class="decision-card border-indigo">
+        <h3>&#128683; Churn</h3>
+        <p style="font-size:0.85rem">Kundenabwanderung vorhersagen</p>
+        <span class="badge indigo">CRM</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERGLEICH -->
+  <section id="comparison" class="card tab-panel">
+    <h2>&#128200; Algorithmen-Vergleich</h2>
+    <div class="table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Kriterium</th>
+            <th>Decision Tree</th>
+            <th>CNN</th>
+            <th>Neural Network</th>
+            <th>Transformer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Datengröße</td><td>Klein&ndash;Mittel</td><td>Mittel&ndash;Groß</td><td>Mittel&ndash;Groß</td><td>Groß</td></tr>
+          <tr><td>Datentyp</td><td>Tabellarisch</td><td>Bilder, Videos</td><td>Tabellarisch, strukturiert</td><td>Text, Sequenzen</td></tr>
+          <tr><td>Erklärbarkeit</td><td>&#9733;&#9733;&#9733;&#9733;&#9733;</td><td>&#9733;&#9733;</td><td>&#9733;&#9733;</td><td>&#9733;</td></tr>
+          <tr><td>GPU nötig</td><td>Nein</td><td>Ja (empfohlen)</td><td>Optional</td><td>Ja</td></tr>
+          <tr><td>Trainingsdauer</td><td>Sehr schnell</td><td>Langsam</td><td>Mittel</td><td>Sehr langsam</td></tr>
+          <tr><td>Overfitting-Risiko</td><td>Hoch (ohne Pruning)</td><td>Mittel</td><td>Mittel</td><td>Niedrig (bei genug Daten)</td></tr>
+          <tr><td>Deployment</td><td>Einfach</td><td>Mittel (ONNX)</td><td>Mittel (ONNX)</td><td>Schwer (LLMs)</td></tr>
+          <tr><td>Bibliothek</td><td>scikit-learn</td><td>PyTorch/TF</td><td>PyTorch/TF</td><td>PyTorch/HuggingFace</td></tr>
+          <tr><td>Beispiel-Accuracy</td><td>77% (Diabetes)</td><td>98.57% (MNIST)</td><td>97% (Circles)</td><td>SOTA NLP-Tasks</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PROJEKTE -->
+  <section id="projects" class="card tab-panel">
+    <h2>&#128736; Praktische Projekt-Ideen</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header blue-bg">Decision Tree</div>
+        <div class="project-body">
+          <div class="project-level beginner">Einsteiger</div>
+          <p><strong>Krankheitsprognose</strong>&nbsp;&mdash; Pima Indians Diabetes Dataset<br>
+          Klassifizierung mit max_depth Tuning, Visualisierung des Baums</p>
+          <pre><code>pip install scikit-learn pandas
+# Dataset: sklearn.datasets oder Kaggle</code></pre>
+
+          <div class="project-level intermediate">Fortgeschritten</div>
+          <p><strong>Titanic-überleben</strong>&nbsp;&mdash; Feature Engineering + CART<br>
+          Kategorie-Encoding, Hyperparameter-Optimierung mit GridSearchCV</p>
+
+          <div class="project-level advanced">Experte</div>
+          <p><strong>Credit Risk Scoring</strong>&nbsp;&mdash; Random Forest + Interpretation<br>
+          SHAP-Werte für Feature Importance, regulatorische Compliance</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header green-bg">CNN</div>
+        <div class="project-body">
+          <div class="project-level beginner">Einsteiger</div>
+          <p><strong>MNIST Handschrift-Erkennung</strong><br>
+          PyTorch CNN, DataLoader, Adam-Optimizer</p>
+          <pre><code>pip install torch torchvision torchmetrics
+# Dataset: torchvision.datasets.MNIST</code></pre>
+
+          <div class="project-level intermediate">Fortgeschritten</div>
+          <p><strong>Hunde vs. Katzen Klassifikation</strong><br>
+          Transfer Learning mit ResNet18, Data Augmentation</p>
+
+          <div class="project-level advanced">Experte</div>
+          <p><strong>Medizinische Bildanalyse</strong>&nbsp;&mdash; Brustkrebs-Erkennung<br>
+          DICOM-Daten, U-Net Segmentierung, ONNX-Deployment</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header orange-bg">Neural Networks</div>
+        <div class="project-body">
+          <div class="project-level beginner">Einsteiger</div>
+          <p><strong>Binäre Klassifikation</strong>&nbsp;&mdash; make_circles<br>
+          2-Layer MLP, BCELoss, SGD/Adam-Vergleich</p>
+          <pre><code>pip install torch scikit-learn matplotlib
+# Dataset: sklearn.datasets.make_circles</code></pre>
+
+          <div class="project-level intermediate">Fortgeschritten</div>
+          <p><strong>Hauspreisvorhersage</strong>&nbsp;&mdash; California Housing<br>
+          Regression, MSELoss, Normalisierung, Feature Scaling</p>
+
+          <div class="project-level advanced">Experte</div>
+          <p><strong>Fraud Detection</strong>&nbsp;&mdash; Imbalanced Dataset<br>
+          Weighted Loss, SMOTE, Precision-Recall Optimierung</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header purple-bg">Transformer</div>
+        <div class="project-body">
+          <div class="project-level beginner">Einsteiger</div>
+          <p><strong>Sentiment-Analyse</strong> mit HuggingFace BERT<br>
+          Pre-trained Model, Fine-Tuning auf eigenen Daten</p>
+          <pre><code>pip install transformers datasets torch
+# from transformers import BertForSequenceClassification</code></pre>
+
+          <div class="project-level intermediate">Fortgeschritten</div>
+          <p><strong>Maschinen-übersetzung</strong>&nbsp;&mdash; Transformer von Scratch<br>
+          Encoder-Decoder wie oben implementiert, Multi30k Dataset</p>
+
+          <div class="project-level advanced">Experte</div>
+          <p><strong>Code-Assistent</strong>&nbsp;&mdash; GPT-2 Fine-Tuning<br>
+          Domain-spezifischer Code-Generator, ONNX-Export + API</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header red-bg">ONNX / Deployment</div>
+        <div class="project-body">
+          <div class="project-level beginner">Einsteiger</div>
+          <p><strong>PyTorch ? ONNX Konvertierung</strong><br>
+          Eigenes CNN exportieren, Ergebnis validieren</p>
+          <pre><code>pip install onnx onnxruntime fastapi uvicorn
+torch.onnx.export(model, dummy, "model.onnx")</code></pre>
+
+          <div class="project-level intermediate">Fortgeschritten</div>
+          <p><strong>REST API mit FastAPI</strong><br>
+          ONNX Runtime InferenceSession, /predict Endpoint, Docker</p>
+
+          <div class="project-level advanced">Experte</div>
+          <p><strong>Edge Deployment</strong>&nbsp;&mdash; Raspberry Pi<br>
+          INT8-Quantisierung, ONNX Runtime Mobile, Latenz-Benchmarking</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SVM -->
+  <section id="svm" class="card tab-panel">
+    <div class="section-header">
+      <span class="section-icon teal-bg">&#9654;</span>
+      <h2>Support Vector Machines (SVM)</h2>
+    </div>
+    <span class="badge teal">scikit-learn</span>
+    <p style="margin-top:0.75rem">SVM konstruiert eine <strong>Hyperebene im mehrdimensionalen Raum</strong>, um Klassen zu trennen. Das Ziel ist die <em>maximal marginale Hyperebene (MMH)</em> &mdash; bekannt für sehr hohe Genauigkeit und den Kernel-Trick für nicht-lineare Probleme (Gesichtserkennung, Spam-Filter, Genklassifikation).</p>
+
+    <h3>Kernkonzepte</h3>
+    <div class="two-col">
+      <div class="formula-block">
+        <h4>Support Vectors</h4>
+        <p>Datenpunkte, die der Hyperebene am nächsten liegen. Sie definieren exakt die Trennlinie durch Berechnung der Ränder &mdash; alle anderen Punkte sind irrelevant.</p>
+      </div>
+      <div class="formula-block">
+        <h4>Margin (Rand)</h4>
+        <p>Senkrechter Abstand von der Hyperebene zu den nächstgelegenen Punkten jeder Klasse. Größerer Margin = bessere Generalisierung.</p>
+      </div>
+    </div>
+
+    <h3>SVM-Kernels</h3>
+    <div class="two-col">
+      <div class="formula-block">
+        <h4>Linearer Kernel</h4>
+        <p>Skalarprodukt zweier Beobachtungen &mdash; für linear trennbare Daten:</p>
+        <p>$$K(x,\, x_i) = \sum (x \cdot x_i)$$</p>
+      </div>
+      <div class="formula-block">
+        <h4>Polynomieller Kernel</h4>
+        <p>Verallgemeinerter linearer Kernel, trennt gekrümmte Räume (Grad $d$ manuell setzen):</p>
+        <p>$$K(x,\, x_i) = \bigl(1 + \sum x \cdot x_i\bigr)^d$$</p>
+      </div>
+    </div>
+    <div class="formula-block" style="margin-top:0.75rem">
+      <h4>RBF-Kernel (Radiale Basisfunktion) &mdash; Standard-Empfehlung</h4>
+      <p>Mappt in unendlich-dimensionalen Raum, ideal für nicht-lineare Probleme:</p>
+      <p>$$K(x,\, x_i) = \exp\!\Bigl(-\gamma \cdot \sum (x - x_i)^2\Bigr)$$</p>
+      <p>Gamma-Standardwert: <code>0.1</code>. Höheres Gamma → Overfitting!</p>
+    </div>
+
+    <h3>Vollständige Implementierung &mdash; Brustkrebsdiagnose</h3>
+    <p>Datensatz: <strong>Wisconsin Breast Cancer</strong> &mdash; 569 Proben, 30 Features, 2 Klassen: <em>malignant</em> (bösartig) / <em>benign</em> (gutartig)</p>
+    <pre><code class="python"># ============================================================
+# SVM Klassifikation mit scikit-learn
+# Datensatz: Breast Cancer Wisconsin (569 Proben, 30 Features)
+# ============================================================
+from sklearn import datasets, svm, metrics
+from sklearn.model_selection import train_test_split
+
+# ---- 1. Daten laden ----
+cancer = datasets.load_breast_cancer()
+print("Features:", cancer.feature_names)   # 30 Features
+print("Labels:  ", cancer.target_names)    # ['malignant' 'benign']
+print("Shape:   ", cancer.data.shape)      # (569, 30)
+
+# ---- 2. Daten aufteilen (70% Training / 30% Test) ----
+X_train, X_test, y_train, y_test = train_test_split(
+    cancer.data, cancer.target,
+    test_size=0.3, random_state=109
+)
+
+# ---- 3. SVM-Modell mit linearem Kernel erstellen ----
+clf = svm.SVC(kernel='linear')
+
+# ---- 4. Modell trainieren ----
+clf.fit(X_train, y_train)
+
+# ---- 5. Vorhersagen auf Testdaten ----
+y_pred = clf.predict(X_test)
+
+# ---- 6. Bewertung ----
+print("Accuracy: ", metrics.accuracy_score(y_test, y_pred))   # 0.9649
+print("Precision:", metrics.precision_score(y_test, y_pred))  # 0.9811
+print("Recall:   ", metrics.recall_score(y_test, y_pred))     # 0.9630</code></pre>
+
+    <div class="result-box">
+      <strong>&#127919; Ergebnis:</strong> Accuracy: <strong>96.49%</strong> &nbsp;|&nbsp;
+      Precision: <strong>98.11%</strong> &nbsp;|&nbsp;
+      Recall: <strong>96.30%</strong>
+    </div>
+
+    <h3>Hyperparameter-Tuning mit GridSearchCV</h3>
+    <pre><code class="python">from sklearn.model_selection import GridSearchCV
+
+# Parameter-Grid definieren
+param_grid = {
+    'C':      [0.1, 1, 10, 100],
+    'gamma':  [1, 0.1, 0.01, 0.001],
+    'kernel': ['rbf', 'linear']
+}
+
+# Grid Search mit 5-facher Kreuzvalidierung
+grid = GridSearchCV(svm.SVC(), param_grid, refit=True, verbose=2, cv=5)
+grid.fit(X_train, y_train)
+
+print("Beste Parameter:", grid.best_params_)
+grid_pred = grid.predict(X_test)
+print("Grid-Accuracy:  ", metrics.accuracy_score(y_test, grid_pred))</code></pre>
+
+    <h3>Wichtige Hyperparameter</h3>
+    <div class="table-wrap">
+      <table class="info-table">
+        <thead>
+          <tr><th>Parameter</th><th>Bedeutung</th><th>Empfehlung</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>kernel</code></td><td>Art der Kernel-Transformation</td><td>'linear' für einfache, 'rbf' für nicht-lineare Daten</td></tr>
+          <tr><td><code>C</code></td><td>Regularisierungs-Strafparameter für Fehlklassifikation</td><td>Klein = weicher Rand, Groß = harter Rand</td></tr>
+          <tr><td><code>gamma</code></td><td>Einflussradius einzelner Trainingspunkte (RBF/poly)</td><td>0.1 als guter Standardwert; höher = Overfitting</td></tr>
+          <tr><td><code>degree</code></td><td>Grad des polynomiellen Kernels</td><td>Nur bei kernel='poly', Standard: 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Vor- und Nachteile</h3>
+    <div class="pro-con">
+      <div class="pro">
+        <h4>&#9989; Vorteile</h4>
+        <ul>
+          <li>Sehr hohe Genauigkeit (besser als Naive Bayes, Logistic Regression)</li>
+          <li>Effektiv bei hochdimensionalen Räumen</li>
+          <li>Wenig Speicherverbrauch (nur Support Vectors gespeichert)</li>
+          <li>Kernel-Trick für beliebige nicht-lineare Probleme</li>
+          <li>Schnelle Vorhersage nach dem Training</li>
+        </ul>
+      </div>
+      <div class="con">
+        <h4>&#10060; Nachteile</h4>
+        <ul>
+          <li>Langsames Training bei großen Datensätzen</li>
+          <li>Schlechte Performance bei überlappenden Klassen</li>
+          <li>Empfindlich gegenüber Kernel-Wahl und Skalierung</li>
+          <li>Schwer interpretierbar (Black Box)</li>
+          <li>Feature-Skalierung (StandardScaler) notwendig</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Anwendungsfälle</h3>
+    <div class="decision-grid">
+      <div class="decision-card border-teal">
+        <h3>&#128248; Gesichtserkennung</h3>
+        <p style="font-size:0.85rem">Hochdimensionaler Pixelraum &mdash; RBF-Kernel ideal</p>
+        <span class="badge teal">Bildklassifikation</span>
+      </div>
+      <div class="decision-card border-teal">
+        <h3>&#128140; E-Mail Spam</h3>
+        <p style="font-size:0.85rem">Textklassifikation mit TF-IDF Features und linearem Kernel</p>
+        <span class="badge teal">NLP</span>
+      </div>
+      <div class="decision-card border-teal">
+        <h3>&#129516; Bioinformatik</h3>
+        <p style="font-size:0.85rem">Genklassifikation, Proteinstruktur-Vorhersage</p>
+        <span class="badge teal">Wissenschaft</span>
+      </div>
+      <div class="decision-card border-teal">
+        <h3>&#9997; Handschrift</h3>
+        <p style="font-size:0.85rem">MNIST-ähnliche Aufgaben, Ziffernerkennung</p>
+        <span class="badge teal">Computer Vision</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOSSAR -->
+  <section id="glossar" class="card tab-panel">
+    <div class="section-header">
+      <span class="section-icon blue-bg">&#128218;</span>
+      <h2>Glossar &mdash; Schlüsselbegriffe</h2>
+    </div>
+    <p>Schnelles Nachschlagen der wichtigsten Fachbegriffe aus Machine Learning, Deep Learning und Datenwissenschaft.</p>
+
+    <div class="glossar-grid">
+
+      <!-- A -->
+      <div class="glossar-letter">A</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Activation Function <span class="badge blue">DL</span></div>
+        <div class="glossar-def">Nicht-lineare Funktion, die nach einer Schicht angewendet wird, damit das Netz komplexe Muster lernen kann. Bekannte Beispiele: <code>ReLU</code> (max(0,x)), <code>Sigmoid</code> (0&ndash;1), <code>Softmax</code> (Wahrscheinlichkeiten über Klassen).</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Attention <span class="badge purple">Transformer</span></div>
+        <div class="glossar-def">Mechanismus, der jedem Token eines Satzes ein Gewicht zuweist, das angibt, welche anderen Tokens es bei der Vorhersage berücksichtigen soll. Formel: $\text{Attention}(Q,K,V) = \text{softmax}\!\left(\frac{QK^T}{\sqrt{d_k}}\right)V$</div>
+      </div>
+
+      <!-- B -->
+      <div class="glossar-letter">B</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Backpropagation <span class="badge orange">NN</span></div>
+        <div class="glossar-def">Algorithmus zur Berechnung von Gradienten durch alle Schichten eines Netzes mittels der <em>Chain Rule</em>. Ermöglicht dem Optimizer, die Gewichte in Richtung des geringsten Verlusts anzupassen.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Batch / Mini-Batch <span class="badge orange">Training</span></div>
+        <div class="glossar-def">Anzahl der Datenpunkte, die gleichzeitig durch das Netz verarbeitet werden, bevor ein Gewichts-Update stattfindet. Kleiner Batch = verrauschtere, aber oft bessere Generalisierung.</div>
+      </div>
+
+      <!-- C -->
+      <div class="glossar-letter">C</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Klasse (Class) <span class="badge blue">ML</span></div>
+        <div class="glossar-def">Eine Kategorie, der ein Datenpunkt zugeordnet werden soll. Bei Brustkrebsdiagnose: <em>malignant</em> / <em>benign</em>. In Python/scikit-learn sind Klassen die eindeutigen Werte in der Zielvariablen <code>y</code>. Bei OOP bezeichnet &ldquo;Klasse&rdquo; eine Vorlage für Objekte (<code>class MyModel(nn.Module)</code>).</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Cross-Entropy Loss <span class="badge orange">NN</span></div>
+        <div class="glossar-def">Verlustfunktion für Klassifikationsprobleme: $L = -\sum_i y_i \log(\hat{y}_i)$. Je weiter die Vorhersage von der Wahrheit entfernt, desto größer der Verlust. In PyTorch: <code>nn.CrossEntropyLoss()</code>.</div>
+      </div>
+
+      <!-- D -->
+      <div class="glossar-letter">D</div>
+      <div class="glossar-item">
+        <div class="glossar-term">DataFrame <span class="badge blue">pandas</span></div>
+        <div class="glossar-def">Zweidimensionale tabellarische Datenstruktur aus der pandas-Bibliothek &mdash; ähnlich einer Excel-Tabelle oder SQL-Tabelle. Jede Spalte ist eine <code>Series</code> mit einem Namen. Basis für das Laden, Filtern und Vorverarbeiten von ML-Datensätzen: <code>df = pd.read_csv(&quot;data.csv&quot;)</code>.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Dropout <span class="badge orange">Regularisierung</span></div>
+        <div class="glossar-def">Regularisierungstechnik: Beim Training werden zufällig $p$% der Neuronen auf 0 gesetzt, um Overfitting zu reduzieren. Beim Inference werden alle Neuronen verwendet, aber mit Faktor $(1-p)$ skaliert. In PyTorch: <code>nn.Dropout(p=0.5)</code>.</div>
+      </div>
+
+      <!-- E -->
+      <div class="glossar-letter">E</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Embedding <span class="badge purple">NLP</span></div>
+        <div class="glossar-def">Darstellung von diskreten Werten (Wörter, Token, Kategorien) als kontinuierliche Vektoren in einem $d$-dimensionalen Raum. Ähnliche Konzepte liegen sich im Embedding-Raum näher. In PyTorch: <code>nn.Embedding(vocab_size, d_model)</code>.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Epoch <span class="badge orange">Training</span></div>
+        <div class="glossar-def">Ein vollständiger Durchlauf des gesamten Trainingsdatensatzes. Typisch: 10&ndash;100 Epochen. Eine Epoche besteht aus mehreren Batches (Anzahl = Datensatzgröße / Batchgröße).</div>
+      </div>
+
+      <!-- F -->
+      <div class="glossar-letter">F</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Feature <span class="badge blue">ML</span></div>
+        <div class="glossar-def">Eine einzelne messbare Eigenschaft eines Datenpunkts (Eingabevariable). Bei Diabetes-Datensatz: Glukose, BMI, Alter. In scikit-learn als Matrix <code>X</code> mit Form <code>(n_samples, n_features)</code> übergeben.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Filter / Kernel (CNN) <span class="badge green">CNN</span></div>
+        <div class="glossar-def">Kleines Gewichtsarray (z.B. 3&times;3), das über das Bild &ldquo;gefaltet&rdquo; (konvolviert) wird, um räumliche Merkmale wie Kanten oder Texturen zu detektieren. Jeder Filter erzeugt eine Feature Map.</div>
+      </div>
+
+      <!-- G -->
+      <div class="glossar-letter">G</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Gradient <span class="badge orange">Optimierung</span></div>
+        <div class="glossar-def">Ableitung des Verlusts nach einem Gewicht &mdash; gibt die Richtung des stärksten Anstiegs an. Der Optimizer bewegt die Gewichte in die <em>entgegengesetzte</em> Richtung (Gradientenabstieg): $w \leftarrow w - \eta \nabla_w L$.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Gini-Index <span class="badge blue">Decision Tree</span></div>
+        <div class="glossar-def">Maß für die Unreinheit eines Knotens: $Gini = 1 - \sum_i p_i^2$. Ein Knoten mit nur einer Klasse hat Gini = 0 (rein). Wird von CART (scikit-learn Standard) minimiert, um optimale Splits zu finden.</div>
+      </div>
+
+      <!-- H -->
+      <div class="glossar-letter">H</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Hyperebene <span class="badge teal">SVM</span></div>
+        <div class="glossar-def">Eine $(n-1)$-dimensionale Entscheidungsgrenze in einem $n$-dimensionalen Raum, die verschiedene Klassen trennt. Bei 2D-Daten: eine Linie. Bei 3D: eine Fläche. SVM sucht die Hyperebene mit dem <em>maximalen Margin</em> zwischen den nächstgelegenen Punkten beider Klassen.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Hyperparameter <span class="badge blue">ML</span></div>
+        <div class="glossar-def">Parameter, die <em>vor</em> dem Training manuell gesetzt werden (im Gegensatz zu gelernten Gewichten). Beispiele: Lernrate (<code>lr</code>), Batch-Größe, Anzahl Schichten, <code>max_depth</code> beim Decision Tree, <code>C</code> und <code>gamma</code> bei SVM.</div>
+      </div>
+
+
+      <!-- L -->
+      <div class="glossar-letter">L</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Log-Likelihood <span class="badge blue">Stats</span></div>
+        <div class="glossar-def">Logarithmus der Likelihood-Funktion. Wird in der <strong>Maximum Likelihood Estimation (MLE)</strong> maximiert, um Modellparameter zu sch&#228;tzen. In der Praxis numerisch stabiler als die Likelihood selbst, da Produkte zu Summen werden: $\log P(D|	heta) = \sum_i \log P(x_i|	heta)$.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Logistische Regression <span class="badge indigo">ML</span></div>
+        <div class="glossar-def">Klassifikationsalgorithmus (trotz des Namens), der die Sigmoid-Funktion $\sigma(z) = 1/(1+e^{-z})$ nutzt, um Klassenwahrscheinlichkeiten zu berechnen. Minimiert Binary Cross-Entropy Loss. Interpretierbare Koeffizienten, solide Baseline f&#252;r bin&#228;re Klassifikation.</div>
+      </div>
+
+      <!-- K -->
+      <div class="glossar-letter">K</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Kernel (SVM) <span class="badge teal">SVM</span></div>
+        <div class="glossar-def">Funktion, die Datenpunkte in einen höher-dimensionalen Raum transformiert, um nicht-lineare Probleme linear trennbar zu machen (<em>Kernel-Trick</em>). Typen: <strong>Linear</strong> $K(x,x_i)=x \cdot x_i$, <strong>RBF</strong> $K=e^{-\gamma||x-x_i||^2}$, <strong>Polynom</strong> $K=(1+x\cdot x_i)^d$.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Kreuzvalidierung (Cross-Validation) <span class="badge blue">ML</span></div>
+        <div class="glossar-def">Technik zur robusten Modellbewertung: Der Datensatz wird in $k$ gleich große Teile aufgeteilt. Das Modell wird $k$-mal trainiert, wobei jeweils ein anderer Teil als Testset dient. Ergebnis: stabilere Genauigkeitsschätzung als ein einzelner Train/Test-Split.</div>
+      </div>
+
+      <!-- L -->
+      <div class="glossar-letter">L</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Layer Normalization <span class="badge purple">Transformer</span></div>
+        <div class="glossar-def">Normalisiert die Aktivierungen innerhalb einer einzelnen Schicht über alle Features eines Datenpunkts: $\hat{x} = \frac{x - \mu}{\sigma + \varepsilon}$. Stabilisiert das Training tiefer Netze. In Transformern nach jeder Sublayer verwendet (<code>nn.LayerNorm(d_model)</code>). Unterschied zu Batch Norm: arbeitet pro Sample, nicht über den Batch.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Learning Rate (Lernrate) <span class="badge orange">Optimierung</span></div>
+        <div class="glossar-def">Schrittgröße bei der Gewichtsaktualisierung: $w \leftarrow w - \eta \nabla L$. Zu groß &rarr; Gewichte divergieren. Zu klein &rarr; sehr langsames Training. Typischer Bereich: $10^{-4}$ bis $10^{-2}$. Mit <em>Learning Rate Scheduler</em> wird sie während des Trainings angepasst.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Loss Function (Verlustfunktion) <span class="badge orange">Training</span></div>
+        <div class="glossar-def">Funktion, die misst, wie weit die Vorhersagen des Modells von den wahren Werten entfernt sind. Klassifikation: Cross-Entropy. Regression: MSE. SVM: Hinge Loss. Das Modell versucht, diesen Wert zu minimieren.</div>
+      </div>
+
+      <!-- M -->
+      <div class="glossar-letter">M</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Margin (Rand) <span class="badge teal">SVM</span></div>
+        <div class="glossar-def">Senkrechter Abstand zwischen der Hyperebene und den nächstgelegenen Datenpunkten (Support Vectors) beider Klassen. SVM maximiert diesen Abstand. Formell: $\text{Margin} = \frac{2}{||w||}$, wobei $w$ der Normalvektor der Hyperebene ist.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Multi-Head Attention <span class="badge purple">Transformer</span></div>
+        <div class="glossar-def">Mehrere parallele Attention-Köpfe, die unterschiedliche Aspekte der Beziehungen im Satz lernen. Outputs werden konkateniert und linear projiziert: $\text{MHA}(Q,K,V) = \text{Concat}(\text{head}_1,\ldots,\text{head}_h)W^O$.</div>
+      </div>
+
+      <!-- N -->
+      <div class="glossar-letter">N</div>
+      <div class="glossar-item">
+        <div class="glossar-term">NumPy Array <span class="badge blue">Python</span></div>
+        <div class="glossar-def">Mehrdimensionales numerisches Array aus der NumPy-Bibliothek. Basis für wissenschaftliche Berechnungen in Python. Effiziente Vektoroperationen ohne Python-Schleifen. In ML dient es als Zwischenformat zwischen pandas DataFrames und PyTorch Tensoren.</div>
+      </div>
+
+
+      <!-- N -->
+      <div class="glossar-letter">N</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Naive Bayes <span class="badge cyan">ML</span></div>
+        <div class="glossar-def">Probabilistischer Klassifikator basierend auf dem Bayes-Theorem. &#8222;Naiv&#8220; wegen der Annahme bedingter Unabh&#228;ngigkeit aller Features. Varianten: Gaussian NB (stetige Daten), Multinomial NB (Texte), Bernoulli NB (bin&#228;re Features). Sehr schnell, ideal f&#252;r Spam-Filter und NLP.</div>
+      </div>
+
+      <!-- O -->
+      <div class="glossar-letter">O</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Overfitting <span class="badge blue">ML</span></div>
+        <div class="glossar-def">Das Modell lernt die Trainingsdaten &ldquo;auswendig&rdquo; &mdash; inkl. Rauschen &mdash; und generalisiert schlecht auf neue Daten. Erkennbar an: hohe Train-Accuracy, niedrige Test-Accuracy. Gegenmaßnahmen: Dropout, Regularisierung, mehr Daten, Early Stopping.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">ONNX (Open Neural Network Exchange) <span class="badge red">Deployment</span></div>
+        <div class="glossar-def">Offenes Format zum Speichern und Austauschen von ML-Modellen zwischen Frameworks (PyTorch &rarr; TensorFlow, ONNX Runtime). Speichert Modellarchitektur + Gewichte als <em>Rechengraph</em> im Protocol-Buffers-Format.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Optimizer <span class="badge orange">Training</span></div>
+        <div class="glossar-def">Algorithmus, der Gewichte basierend auf Gradienten aktualisiert. Wichtigste: <strong>SGD</strong> (Stochastic Gradient Descent), <strong>Adam</strong> (adaptive Lernraten, meistgenutzt), <strong>AdamW</strong> (Adam + Weight Decay). In PyTorch: <code>torch.optim.Adam(model.parameters(), lr=0.001)</code>.</div>
+      </div>
+
+      <!-- P -->
+      <div class="glossar-letter">P</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Pooling <span class="badge green">CNN</span></div>
+        <div class="glossar-def">Reduziert die räumliche Dimension einer Feature Map. <strong>Max Pooling</strong>: nimmt den Maximalwert aus einem Fenster (behält dominante Merkmale). <strong>Average Pooling</strong>: Durchschnittswert. Macht CNN translationsinvariant und reduziert Parameter.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Precision &amp; Recall <span class="badge blue">Metriken</span></div>
+        <div class="glossar-def"><strong>Precision</strong> = TP / (TP + FP): Von allen positiv vorhergesagten, wie viele sind wirklich positiv? <strong>Recall</strong> = TP / (TP + FN): Von allen echten Positiven, wie viele wurden erkannt? Trade-off: hohes Recall &rarr; mehr falsch Positive.</div>
+      </div>
+
+      <!-- R -->
+      <div class="glossar-letter">R</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Regularisierung <span class="badge blue">ML</span></div>
+        <div class="glossar-def">Techniken gegen Overfitting durch Bestrafung großer Gewichte. <strong>L1 (Lasso)</strong>: fügt $\lambda |w|$ zum Verlust hinzu (erzeugt Sparsität). <strong>L2 (Ridge)</strong>: fügt $\lambda w^2$ hinzu (kleine Gewichte). Bei SVM: Parameter <code>C</code> kontrolliert den Regularisierungsgrad.</div>
+      </div>
+
+      <!-- S -->
+      <div class="glossar-letter">S</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Support Vectors <span class="badge teal">SVM</span></div>
+        <div class="glossar-def">Die Datenpunkte, die der Trennhyperebene am nächsten liegen und den Margin definieren. Nur diese Punkte sind für die Konstruktion des SVM-Klassifikators relevant &mdash; alle anderen könnten entfernt werden ohne das Modell zu verändern.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Softmax <span class="badge orange">NN</span></div>
+        <div class="glossar-def">Aktivierungsfunktion für die Ausgabeschicht bei Mehrklassen-Klassifikation: $\sigma(z)_i = \frac{e^{z_i}}{\sum_j e^{z_j}}$. Wandelt rohe Logits in Wahrscheinlichkeiten um, die sich zu 1 summieren.</div>
+      </div>
+
+      <!-- T -->
+      <div class="glossar-letter">T</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Tensor <span class="badge orange">PyTorch</span></div>
+        <div class="glossar-def">Mehrdimensionales Array &mdash; die fundamentale Datenstruktur in PyTorch und TensorFlow. Skalare (0D), Vektoren (1D), Matrizen (2D), Batches (3D), Bilder (4D: Batch&times;Kanäle&times;Höhe&times;Breite). Auf CPU oder GPU gespeichert. Unterstützt automatische Gradientenberechnung (<code>requires_grad=True</code>).</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Token <span class="badge purple">NLP</span></div>
+        <div class="glossar-def">Kleinste Einheit in NLP-Modellen. Jedes Wort (oder Wortteile) wird in einen Integer-Index umgewandelt. &ldquo;Machine Learning&rdquo; &rarr; [101, 3302, 4083, 102]. Diese Indizes werden in Embeddings umgewandelt, bevor sie ins Transformer-Modell eingehen.</div>
+      </div>
+      <div class="glossar-item">
+        <div class="glossar-term">Transfer Learning <span class="badge green">CNN / NLP</span></div>
+        <div class="glossar-def">Vortrainiertes Modell (z.B. ResNet auf ImageNet, BERT auf Wikipedia) für eine neue Aufgabe fein-tunen. Spart enorme Rechenressourcen. Nur die letzten Schichten werden angepasst, frühe Schichten bleiben eingefroren.</div>
+      </div>
+
+      <!-- U -->
+      <div class="glossar-letter">U</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Underfitting <span class="badge blue">ML</span></div>
+        <div class="glossar-def">Das Modell ist zu einfach und lernt die Muster in den Daten nicht. Erkennbar an: niedrige Train- und Test-Accuracy. Lösung: komplexeres Modell (mehr Schichten, mehr Features), längeres Training oder weniger Regularisierung.</div>
+      </div>
+
+      <!-- V -->
+      <div class="glossar-letter">V</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Vektor <span class="badge blue">Mathematik</span></div>
+        <div class="glossar-def">Eine geordnete Liste von Zahlen, die einen Punkt im $n$-dimensionalen Raum beschreibt. In ML repräsentiert jeder Datenpunkt einen Vektor seiner Features. Tensoren sind Verallgemeinerungen von Vektoren auf beliebig viele Dimensionen.</div>
+      </div>
+
+      <!-- W -->
+      <div class="glossar-letter">W</div>
+      <div class="glossar-item">
+        <div class="glossar-term">Gewichte (Weights) <span class="badge orange">NN</span></div>
+        <div class="glossar-def">Die lernbaren Parameter eines neuronalen Netzes &mdash; Zahlen, die durch Backpropagation und einen Optimizer angepasst werden, um den Verlust zu minimieren. Ein Layer mit 128 &rarr; 64 Neuronen hat 128&times;64 = 8.192 Gewichte plus 64 Bias-Terme.</div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+
+<footer>
+  <p>Decision Tree &mdash; CNN &mdash; Neural Networks &mdash; Transformer &mdash; ONNX &mdash; SVM</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
